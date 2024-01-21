@@ -2,7 +2,6 @@
 
 import Discount from './components/discount'
 import OrderSummary from './components/order-summary'
-import OrderTotal from './components/order-total'
 import ProductList from './components/product-list'
 import ShippingInfomation from './components/shipping-infomation'
 import ShippingMethod from './components/shipping-method'

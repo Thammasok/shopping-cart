@@ -1,14 +1,12 @@
+import InputField from '@/components/input-field'
+
 const Discount = () => {
   return (
     <div className='mb-6 pb-6 border-b border-gray-200'>
       <h3 className='mb-5 text-lg font-medium text-gray-90'>Discount</h3>
       <div className='-mx-2 flex items-end justify-start'>
         <div className='flex-grow px-2 lg:max-w-xs'>
-          <input
-            className='bg-gray-100 w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors'
-            placeholder='XXXXXX'
-            type='text'
-          />
+          <InputField id='discount' type='text' placeholder='XXXXXX' />
         </div>
         <div className='px-2'>
           <button className='block w-full max-w-xs mx-auto border border-transparent bg-indigo-600 hover:bg-indigo-700 focus:bg-indigo-600 text-white rounded-md px-5 py-2 font-semibold'>

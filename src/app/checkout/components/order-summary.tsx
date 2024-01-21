@@ -2,7 +2,8 @@ import OrderTotal from './order-total'
 
 const OrderSummary = () => {
   return (
-    <>
+    <div className='mt-10'>
+      <h3 className='mb-5 text-lg font-medium text-gray-90'>Summary</h3>
       <div className='mb-6 pb-6 border-b border-gray-200 text-gray-800'>
         <div className='w-full flex mb-3 items-center'>
           <div className='flex-grow'>
@@ -30,7 +31,7 @@ const OrderSummary = () => {
         </div>
       </div>
       <OrderTotal />
-    </>
+    </div>
   )
 }
 
