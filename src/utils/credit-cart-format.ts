@@ -1,5 +1,7 @@
 import Payment from 'payment'
 
+// ----------------------------------------------------------------------------
+
 const clearNumber = (value: string | '') => {
   return value.replace(/\D+/g, '')
 }

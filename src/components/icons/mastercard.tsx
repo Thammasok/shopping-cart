@@ -1,4 +1,6 @@
-import { IconProps } from './type'
+import { IconProps } from '@/components/icons/type'
+
+// ----------------------------------------------------------------------------
 
 const MastercardIcon = ({
   width = 480,

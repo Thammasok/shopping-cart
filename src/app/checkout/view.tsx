@@ -1,11 +1,11 @@
 'use client'
 
-import Discount from './components/discount'
-import OrderSummary from './components/order-summary'
-import OrderList from './components/order-list'
-import ShippingInfomation from './components/shipping-infomation'
-import ShippingMethod from './components/shipping-method'
-import PaymentMethod from './components/payment-method'
+import Discount from '@/app/checkout/components/discount'
+import OrderSummary from '@/app/checkout/components/order-summary'
+import OrderList from '@/app/checkout/components/order-list'
+import ShippingInfomation from '@/app/checkout/components/shipping-infomation'
+import ShippingMethod from '@/app/checkout/components/shipping-method'
+import PaymentMethod from '@/app/checkout/components/payment-method'
 
 // ----------------------------------------------------------------------
 

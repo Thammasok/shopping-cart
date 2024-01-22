@@ -1,7 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
 import { Dialog, Disclosure } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import Image from 'next/image'
+
+// ----------------------------------------------------------------------------
 
 type ProductTypes = {
   name: string
@@ -44,10 +46,12 @@ const HeaderMenuMobile = ({
         <div className='flex items-center justify-between'>
           <a href='#' className='-m-1.5 p-1.5'>
             <span className='sr-only'>Your Company</span>
-            <img
+            <Image
               className='h-8 w-auto'
-              src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
+              src='/logo.svg'
               alt='Your Company'
+              width={38}
+              height={32}
             />
           </a>
           <button

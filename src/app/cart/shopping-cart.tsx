@@ -1,5 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
-import { Fragment, useState } from 'react'
+'use client'
+
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import {
   ArrowRightIcon,
@@ -8,6 +9,7 @@ import {
   XMarkIcon
 } from '@heroicons/react/24/outline'
 import { convertCurrency } from '@/utils/currency'
+import Image from 'next/image'
 
 const products = [
   {
@@ -37,7 +39,7 @@ const products = [
   // More products...
 ]
 
-// --------------------------------------------------------------------------
+// ----------------------------------------------------------------------
 
 type ShoppingCartViewProps = {
   openShoppingCart: boolean
@@ -104,9 +106,11 @@ const ShoppingCartView = ({
                             {products.map((product) => (
                               <li key={product.id} className='flex py-6'>
                                 <div className='h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200'>
-                                  <img
+                                  <Image
                                     src={product.imageSrc}
                                     alt={product.imageAlt}
+                                    width={94}
+                                    height={94}
                                     className='h-full w-full object-cover object-center'
                                   />
                                 </div>

@@ -1,5 +1,7 @@
 import CartView from '@/app/cart/view'
 
+// ----------------------------------------------------------------------
+
 export const metadata = {
   title: 'Shopping Cart'
 }

@@ -1,15 +1,11 @@
-/* eslint-disable @next/next/no-img-element */
 'use client'
 
-import { useState } from 'react'
-import { StarIcon } from '@heroicons/react/20/solid'
-import { RadioGroup } from '@headlessui/react'
 import Breadcrumbs from '@/components/breadcrumb'
 import ProductDetail from '@/app/product/[meta]/components/product-detail'
 import ProductHighlight from '@/app/product/[meta]/components/product-highlight'
 import ProductDescription from '@/app/product/[meta]/components/product-description'
-import ProductForm from './components/product-form'
-import ProductImage from './components/product-image'
+import ProductForm from '@/app/product/[meta]/components/product-form'
+import ProductImage from '@/app/product/[meta]/components/product-image'
 
 const product = {
   name: 'Basic Tee 6-Pack',

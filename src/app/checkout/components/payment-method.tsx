@@ -1,3 +1,5 @@
+'use client'
+
 import MastercardIcon from '@/components/icons/mastercard'
 import VisaIcon from '@/components/icons/visa'
 import InputField from '@/components/input-field'
@@ -8,6 +10,8 @@ import {
 } from '@/utils/credit-cart-format'
 import Image from 'next/image'
 import { useState } from 'react'
+
+// ----------------------------------------------------------------------
 
 const CreditCardProvider = {
   VISA: 'VISA',

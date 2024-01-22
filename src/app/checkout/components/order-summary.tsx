@@ -1,5 +1,9 @@
+'use client'
+
 import { convertCurrency } from '@/utils/currency'
-import OrderTotal from './order-total'
+import OrderTotal from '@/app/checkout/components/order-total'
+
+// ----------------------------------------------------------------------
 
 const OrderSummary = () => {
   return (
@@ -20,7 +24,7 @@ const OrderSummary = () => {
             <span className='text-gray-600'>Discount</span>
           </div>
           <div className='pl-3'>
-            <span className='font-semibold'>{convertCurrency(20.00)}</span>
+            <span className='font-semibold'>{convertCurrency(20.0)}</span>
           </div>
         </div>
         <div className='w-full flex items-center'>

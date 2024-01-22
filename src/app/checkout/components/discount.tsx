@@ -1,5 +1,9 @@
+'use client'
+
 import InputField from '@/components/input-field'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+
+// ----------------------------------------------------------------------
 
 const Discount = () => {
   return (

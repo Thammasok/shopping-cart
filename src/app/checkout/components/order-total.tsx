@@ -1,5 +1,7 @@
 import { convertCurrency } from "@/utils/currency"
 
+// ----------------------------------------------------------------------
+
 const OrderTotal = () => {
   return (
     <div className='mb-6 pb-6 border-b border-gray-200 md:border-none text-gray-800 text-xl'>

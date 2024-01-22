@@ -4,8 +4,6 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 // ----------------------------------------------------------------------
 
-// type ProductTitleProps = {}
-
 const SearchForm = () => {
   return (
     <form className='flex items-center my-10'>

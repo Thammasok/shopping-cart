@@ -1,4 +1,6 @@
-import { IconProps } from './type'
+import { IconProps } from '@/components/icons/type'
+
+// ----------------------------------------------------------------------------
 
 const VisaIcon = ({ width = 160, height = 100, className }: IconProps) => {
   return (

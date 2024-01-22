@@ -2,6 +2,7 @@
 
 import { convertCurrency } from '@/utils/currency'
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image'
 
 // ----------------------------------------------------------------------
 
@@ -42,9 +43,11 @@ const OrderList = () => {
           {products.map((product) => (
             <li key={product.id} className='flex py-6'>
               <div className='h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200'>
-                <img
+                <Image
                   src={product.imageSrc}
                   alt={product.imageAlt}
+                  width={92}
+                  height={92}
                   className='h-full w-full object-cover object-center'
                 />
               </div>
