@@ -1,7 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import {
+  ArrowRightIcon,
+  MinusIcon,
+  PlusIcon,
+  XMarkIcon
+} from '@heroicons/react/24/outline'
+import { convertCurrency } from '@/utils/currency'
 
 const products = [
   {
@@ -9,7 +15,7 @@ const products = [
     name: 'Throwback Hip Bag',
     href: '#',
     color: 'Salmon',
-    price: '$90.00',
+    price: 90.0,
     quantity: 1,
     imageSrc:
       'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
@@ -21,7 +27,7 @@ const products = [
     name: 'Medium Stuff Satchel',
     href: '#',
     color: 'Blue',
-    price: '$32.00',
+    price: 32.0,
     quantity: 1,
     imageSrc:
       'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
@@ -113,7 +119,9 @@ const ShoppingCartView = ({
                                           {product.name}
                                         </a>
                                       </h3>
-                                      <p className='ml-4'>{product.price}</p>
+                                      <p className='ml-4'>
+                                        {convertCurrency(product.price)}
+                                      </p>
                                     </div>
                                     <p className='mt-1 text-sm text-gray-500'>
                                       {product.color}
@@ -128,21 +136,7 @@ const ShoppingCartView = ({
                                           data-input-counter-decrement='quantity-input'
                                           className='bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-2 h-10 focus:ring-gray-100 focus:ring-2 focus:outline-none'
                                         >
-                                          <svg
-                                            className='w-3 h-3 text-gray-900'
-                                            aria-hidden='true'
-                                            xmlns='http://www.w3.org/2000/svg'
-                                            fill='none'
-                                            viewBox='0 0 18 2'
-                                          >
-                                            <path
-                                              stroke='currentColor'
-                                              strokeLinecap='round'
-                                              strokeLinejoin='round'
-                                              stroke-width='2'
-                                              d='M1 1h16'
-                                            />
-                                          </svg>
+                                          <MinusIcon className='w-3 h-3 text-gray-900' />
                                         </button>
                                         <input
                                           type='text'
@@ -160,28 +154,16 @@ const ShoppingCartView = ({
                                           data-input-counter-increment='quantity-input'
                                           className='bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-2 h-10 focus:ring-gray-100'
                                         >
-                                          <svg
-                                            className='w-3 h-3 text-gray-900'
-                                            aria-hidden='true'
-                                            xmlns='http://www.w3.org/2000/svg'
-                                            fill='none'
-                                            viewBox='0 0 18 18'
-                                          >
-                                            <path
-                                              stroke='currentColor'
-                                              strokeLinecap='round'
-                                              strokeLinejoin='round'
-                                              stroke-width='2'
-                                              d='M9 1v16M1 9h16'
-                                            />
-                                          </svg>
+                                          <PlusIcon className='w-3 h-3 text-gray-900' />
                                         </button>
                                       </div>
                                       <p
                                         id='helper-text-explanation'
                                         className='mt-2 text-sm text-gray-500'
                                       >
-                                        มีสินค้าทั้งหมด 17088 ชิ้น
+                                        {`มีสินค้าทั้งหมด ${convertCurrency(
+                                          17088
+                                        )} ชิ้น`}
                                       </p>
                                     </div>
 
@@ -205,7 +187,7 @@ const ShoppingCartView = ({
                     <div className='border-t border-gray-200 px-4 py-6 sm:px-6'>
                       <div className='flex justify-between text-base font-medium text-gray-900'>
                         <p>Subtotal</p>
-                        <p>$262.00</p>
+                        <p>{convertCurrency(122.0)}</p>
                       </div>
                       <p className='mt-0.5 text-sm text-gray-500'>
                         Shipping and taxes calculated at checkout.
@@ -223,11 +205,11 @@ const ShoppingCartView = ({
                           or{' '}
                           <button
                             type='button'
-                            className='font-medium text-indigo-600 hover:text-indigo-500'
+                            className='font-medium text-indigo-600 hover:text-indigo-500 flex gap-1 items-center'
                             onClick={() => setOpenShoppingCart(false)}
                           >
                             Continue Shopping
-                            <span aria-hidden='true'> &rarr;</span>
+                            <ArrowRightIcon width={16} />
                           </button>
                         </p>
                       </div>

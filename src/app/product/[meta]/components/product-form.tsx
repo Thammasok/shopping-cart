@@ -2,13 +2,13 @@
 'use client'
 
 import { useState } from 'react'
-import { ProductDetailProp } from '../view'
+import { ProductDetailProps } from '../view'
+import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
+import { convertCurrency } from '@/utils/currency'
 
-function classNames(...classes: any[]) {
-  return classes.filter(Boolean).join(' ')
-}
+// ----------------------------------------------------------------------
 
-const ProductForm = (product: ProductDetailProp) => {
+const ProductForm = (product: ProductDetailProps) => {
   const [quantity, setQuantity] = useState(1)
 
   const handleChange = (e: { target: { value: string } }) =>
@@ -22,7 +22,7 @@ const ProductForm = (product: ProductDetailProp) => {
         {product.name}
       </h1>
 
-      <p className='text-3xl tracking-tight text-gray-900'>{product.price}</p>
+      <p className='text-3xl tracking-tight text-gray-900'>{convertCurrency(product.price)}</p>
 
       <form className='mt-10'>
         <label
@@ -40,21 +40,7 @@ const ProductForm = (product: ProductDetailProp) => {
             className='bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 focus:ring-2 focus:outline-none'
             onClick={decrementQuantity}
           >
-            <svg
-              className='w-3 h-3 text-gray-900'
-              aria-hidden='true'
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 18 2'
-            >
-              <path
-                stroke='currentColor'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                stroke-width='2'
-                d='M1 1h16'
-              />
-            </svg>
+            <MinusIcon className='w-3 h-3 text-gray-900' />
           </button>
           <input
             type='text'
@@ -74,21 +60,7 @@ const ProductForm = (product: ProductDetailProp) => {
             className='bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100'
             onClick={incrementQuantity}
           >
-            <svg
-              className='w-3 h-3 text-gray-900'
-              aria-hidden='true'
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 18 18'
-            >
-              <path
-                stroke='currentColor'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                stroke-width='2'
-                d='M9 1v16M1 9h16'
-              />
-            </svg>
+            <PlusIcon className='w-3 h-3 text-gray-900' />
           </button>
         </div>
         <p id='helper-text-explanation' className='mt-2 text-sm text-gray-500'>

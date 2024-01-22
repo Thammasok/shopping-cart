@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 
+import { convertCurrency } from '@/utils/currency'
+
 // ----------------------------------------------------------------------
 
 type ProductCardProps = {
@@ -10,7 +12,7 @@ type ProductCardProps = {
     meta: string
     imageSrc: string
     imageAlt: string
-    price: string
+    price: number
     color: string
     href?: string
   }
@@ -36,7 +38,9 @@ const ProductCard = ({ data }: ProductCardProps) => {
           </h3>
           <p className='mt-1 text-sm text-gray-500'>{data.color}</p>
         </div>
-        <p className='text-sm font-medium text-gray-900'>{data.price}</p>
+        <p className='text-sm font-medium text-gray-900'>{convertCurrency(
+          data.price
+        )}</p>
       </div>
     </div>
   )

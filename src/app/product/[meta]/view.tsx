@@ -13,7 +13,7 @@ import ProductImage from './components/product-image'
 
 const product = {
   name: 'Basic Tee 6-Pack',
-  price: '$192',
+  price: 192,
   href: '#',
   breadcrumbs: [
     { id: 1, name: 'Clothing', href: '#' }
@@ -65,9 +65,9 @@ const product = {
 
 // ----------------------------------------------------------------------------
 
-export type ProductDetailProp = {
+export type ProductDetailProps = {
   name: string
-  price: string
+  price: number
   href: string
   breadcrumbs: Breadcrumb[]
   images: Image[]

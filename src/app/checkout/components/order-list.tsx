@@ -1,5 +1,8 @@
 'use client'
 
+import { convertCurrency } from '@/utils/currency'
+import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
+
 // ----------------------------------------------------------------------
 
 const products = [
@@ -8,7 +11,7 @@ const products = [
     name: 'Throwback Hip Bag',
     href: '#',
     color: 'Salmon',
-    price: '$90.00',
+    price: 90.0,
     quantity: 1,
     imageSrc:
       'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
@@ -20,7 +23,7 @@ const products = [
     name: 'Medium Stuff Satchel',
     href: '#',
     color: 'Blue',
-    price: '$32.00',
+    price: 32.0,
     quantity: 1,
     imageSrc:
       'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
@@ -30,7 +33,7 @@ const products = [
   // More products...
 ]
 
-const ProductList = () => {
+const OrderList = () => {
   return (
     <>
       <div className='w-full mx-auto text-gray-800 font-light mb-6 border-b border-gray-200 pb-6'>
@@ -52,7 +55,7 @@ const ProductList = () => {
                     <h3>
                       <a href={product.href}>{product.name}</a>
                     </h3>
-                    <p className='ml-4'>{product.price}</p>
+                    <p className='ml-4'>{convertCurrency(product.price)}</p>
                   </div>
                   <p className='mt-1 text-sm text-gray-500'>{product.color}</p>
                 </div>
@@ -65,21 +68,7 @@ const ProductList = () => {
                         data-input-counter-decrement='quantity-input'
                         className='bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-2 h-10 focus:ring-gray-100 focus:ring-2 focus:outline-none'
                       >
-                        <svg
-                          className='w-3 h-3 text-gray-900'
-                          aria-hidden='true'
-                          xmlns='http://www.w3.org/2000/svg'
-                          fill='none'
-                          viewBox='0 0 18 2'
-                        >
-                          <path
-                            stroke='currentColor'
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                            stroke-width='2'
-                            d='M1 1h16'
-                          />
-                        </svg>
+                        <MinusIcon className='w-3 h-3 text-gray-900' />
                       </button>
                       <input
                         type='text'
@@ -97,28 +86,14 @@ const ProductList = () => {
                         data-input-counter-increment='quantity-input'
                         className='bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-2 h-10 focus:ring-gray-100'
                       >
-                        <svg
-                          className='w-3 h-3 text-gray-900'
-                          aria-hidden='true'
-                          xmlns='http://www.w3.org/2000/svg'
-                          fill='none'
-                          viewBox='0 0 18 18'
-                        >
-                          <path
-                            stroke='currentColor'
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                            stroke-width='2'
-                            d='M9 1v16M1 9h16'
-                          />
-                        </svg>
+                        <PlusIcon className='w-3 h-3 text-gray-900' />
                       </button>
                     </div>
                     <p
                       id='helper-text-explanation'
                       className='mt-2 text-sm text-gray-500'
                     >
-                      มีสินค้าทั้งหมด 17088 ชิ้น
+                      {`มีสินค้าทั้งหมด ${convertCurrency(17088)} ชิ้น`}
                     </p>
                   </div>
 
@@ -140,4 +115,4 @@ const ProductList = () => {
   )
 }
 
-export default ProductList
+export default OrderList

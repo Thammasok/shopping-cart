@@ -1,5 +1,6 @@
 'use client'
 
+import { convertCurrency } from '@/utils/currency'
 import { useState } from 'react'
 
 // ----------------------------------------------------------------------
@@ -29,10 +30,16 @@ const deliveryMethod = [
 ]
 
 const ShippingMethod = () => {
-  const [shippingMethod, setShippingMethod] = useState(1)
+  const [shippingMethod, setShippingMethod] = useState(deliveryMethod[0].name)
+
+  const handleShippingMethodChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setShippingMethod(event.target.value)
+  }
 
   return (
-    <>
+    <div className='mb-6 border-b border-gray-200 pb-6'>
       <h3 className='mb-5 text-lg font-medium text-gray-90'>Delivery method</h3>
       <ul className='grid w-full gap-2 md:grid-cols-3'>
         {deliveryMethod.map((delivery, index) => (
@@ -40,16 +47,17 @@ const ShippingMethod = () => {
             <input
               type='radio'
               id={`shipping-${delivery.id}`}
-              name='hosting'
+              name='shipping-method'
               value={delivery.name}
               className='hidden peer'
-              checked={shippingMethod === delivery.id}
+              onChange={handleShippingMethodChange}
+              checked={shippingMethod === delivery.name}
               required
             />
             <label
-              htmlFor='hosting-small'
+              htmlFor={`shipping-${delivery.id}`}
               className='inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100'
-              onClick={() => setShippingMethod(delivery.id)}
+              onClick={() => setShippingMethod(delivery.name)}
             >
               <div className='block'>
                 <div className='w-full text-lg font-semibold first-letter:uppercase'>
@@ -66,13 +74,15 @@ const ShippingMethod = () => {
                   <div className='mt-6'></div>
                 )}
 
-                <div className='w-full mt-2 font-bold'>{`${delivery.price} THB`}</div>
+                <div className='w-full mt-2 font-bold'>
+                  {convertCurrency(delivery.price)}
+                </div>
               </div>
             </label>
           </li>
         ))}
       </ul>
-    </>
+    </div>
   )
 }
 
