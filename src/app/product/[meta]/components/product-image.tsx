@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import { ProductDetailProp } from '../view'
+import { ProductDetailProps } from '../view'
 
-const ProductImage = (product: ProductDetailProp) => {
+const ProductImage = (product: ProductDetailProps) => {
   return (
     <div className='lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8'>
       <div className='aspect-h-3 aspect-w-4 hidden overflow-hidden rounded-lg lg:block'>
