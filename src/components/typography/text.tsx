@@ -14,6 +14,8 @@ const Text = ({
     customClassName = 'text-md'
   } else if (size === 'lg') {
     customClassName = 'text-lg'
+  } else if (size === 'xl') {
+    customClassName = 'text-xl'
   } else {
     customClassName = 'text-base'
   }

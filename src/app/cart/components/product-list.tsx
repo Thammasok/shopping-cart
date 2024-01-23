@@ -22,7 +22,11 @@ const ProductList = ({ products }: ProductListProps) => {
       <div className='flow-root'>
         <ul role='list' className='-my-6 divide-y divide-gray-200'>
           {products.map((product) => (
-            <ProductItem key={`product-item-${product.id}`} {...product} />
+            <ProductItem
+              key={`product-item-${product.id}`}
+              isHiddenLable
+              {...product}
+            />
           ))}
         </ul>
       </div>

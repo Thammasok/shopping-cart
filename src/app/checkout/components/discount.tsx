@@ -1,5 +1,6 @@
 'use client'
 
+import Button from '@/components/button/button'
 import InputField from '@/components/input-field'
 import Header3 from '@/components/typography/header3'
 import { XMarkIcon } from '@heroicons/react/24/outline'
@@ -8,7 +9,6 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 
 const Discount = () => {
   return (
-    // <div className='mb-6 pb-6 border-b border-gray-200'>
     <div className='w-full mx-auto rounded-lg bg-white border border-gray-200 p-3 text-gray-800 font-light mb-6'>
       <Header3>Discount</Header3>
 
@@ -17,9 +17,9 @@ const Discount = () => {
           <InputField id='discount' type='text' placeholder='XXXXXX' />
         </div>
         <div className='px-2'>
-          <button className='block w-full max-w-xs mx-auto border border-transparent bg-indigo-600 hover:bg-indigo-700 focus:bg-indigo-600 text-white rounded-md px-5 py-2 font-semibold'>
+          <Button className='py-1.5'>
             APPLY
-          </button>
+          </Button>
         </div>
       </div>
 

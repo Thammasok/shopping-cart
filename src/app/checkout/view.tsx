@@ -7,6 +7,7 @@ import ShippingInfomation from '@/app/checkout/components/shipping-infomation'
 import ShippingMethod from '@/app/checkout/components/shipping-method'
 import PaymentMethod from '@/app/checkout/components/payment-method'
 import { redirect } from 'next/navigation'
+import Button from '@/components/button/button'
 
 // ----------------------------------------------------------------------
 
@@ -32,15 +33,9 @@ const CheckoutView = () => {
                 <div className='px-3 md:w-5/12'>
                   <Discount />
                   <OrderSummary />
-
-                  <div>
-                    <button
-                      onClick={submitPayOrder}
-                      className='flex items-center justify-center w-full rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700'
-                    >
-                      PAY NOW
-                    </button>
-                  </div>
+                  <Button onClick={submitPayOrder} isBlock>
+                    PAY NOW
+                  </Button>
                 </div>
               </div>
             </div>

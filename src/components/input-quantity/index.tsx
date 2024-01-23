@@ -7,6 +7,7 @@ import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
 type InputFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label?: string
   id?: string
+  isHiddenLable?: boolean
   decrement: () => void
   increment: () => void
 }
@@ -14,7 +15,7 @@ type InputFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
 const InputQuantity = (props: InputFieldProps) => {
   return (
     <div>
-      {props.label ? (
+      {props.label && !props.isHiddenLable ? (
         <label
           htmlFor={props.id}
           className='block mb-2 text-sm font-medium text-gray-900'

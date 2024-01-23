@@ -85,24 +85,24 @@ const PaymentMethod = () => {
       <Header3>Payment</Header3>
 
       <div className='w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light mb-6'>
+        {/* Credit/Debit Card */}
         <div className='w-full p-3 border-b border-gray-200'>
-          <div>
-            <label
-              htmlFor='payment-credit-card'
-              className='flex items-center cursor-pointer text-sm font-bold text-gray-900'
-            >
-              <input
-                id='payment-credit-card'
-                type='radio'
-                name='payment-method'
-                value='credit-card'
-                className='form-radio h-5 w-5 text-indigo-500 mr-2'
-                onChange={handlePaymentMethodChange}
-                checked={paymentMethod === 'credit-card'}
-              />
-              Credit Card / Debit Card
-            </label>
-          </div>
+          <label
+            htmlFor='payment-credit-card'
+            className='flex items-center cursor-pointer text-sm font-bold text-gray-900'
+          >
+            <input
+              id='payment-credit-card'
+              type='radio'
+              name='payment-method'
+              value='credit-card'
+              className='form-radio h-5 w-5 text-indigo-500 mr-2'
+              onChange={handlePaymentMethodChange}
+              checked={paymentMethod === 'credit-card'}
+            />
+            Credit Card / Debit Card
+          </label>
+
           <div className={paymentMethod === 'credit-card' ? 'mt-5' : 'hidden'}>
             <InputField
               type='text'
@@ -174,24 +174,24 @@ const PaymentMethod = () => {
             </div>
           </div>
         </div>
+
+        {/* Line Pay */}
         <div className='w-full p-3'>
-          <div>
-            <label
-              htmlFor='payment-linepay'
-              className='flex items-center cursor-pointer text-sm font-bold text-gray-900'
-            >
-              <input
-                id='payment-linepay'
-                type='radio'
-                name='payment-method'
-                value='linepay'
-                className='form-radio h-5 w-5 text-indigo-500 mr-2'
-                onChange={handlePaymentMethodChange}
-                checked={paymentMethod === 'linepay'}
-              />
-              Line Pay
-            </label>
-          </div>
+          <label
+            htmlFor='payment-linepay'
+            className='flex items-center cursor-pointer text-sm font-bold text-gray-900'
+          >
+            <input
+              id='payment-linepay'
+              type='radio'
+              name='payment-method'
+              value='linepay'
+              className='form-radio h-5 w-5 text-indigo-500 mr-2'
+              onChange={handlePaymentMethodChange}
+              checked={paymentMethod === 'linepay'}
+            />
+            Line Pay
+          </label>
           <div className={paymentMethod === 'linepay' ? 'mt-2' : 'hidden'}>
             <Image
               src='/qr-code-line-pay.png'

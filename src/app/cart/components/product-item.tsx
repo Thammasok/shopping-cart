@@ -25,6 +25,7 @@ type ProductItemProps = {
   imageAlt: string
   price: number
   amount: number
+  isHiddenLable?: boolean
 }
 
 const ProductItem = ({
@@ -34,7 +35,8 @@ const ProductItem = ({
   imageSrc,
   imageAlt,
   price,
-  amount
+  amount,
+  isHiddenLable = false
 }: ProductItemProps) => {
   const [quantity, setQuantity] = useState(1)
 
@@ -57,7 +59,7 @@ const ProductItem = ({
 
   return (
     <li className='flex py-6'>
-      <div className='h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200'>
+      <div className='h-32 w-32 flex-shrink-0 overflow-hidden rounded-md border border-gray-200'>
         <Image
           src={imageSrc}
           alt={imageAlt}
@@ -89,6 +91,7 @@ const ProductItem = ({
             decrement={decrementQuantity}
             onChange={handleChange}
             value={quantity}
+            isHiddenLable={isHiddenLable}
             required
           />
 
