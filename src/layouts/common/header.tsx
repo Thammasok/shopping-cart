@@ -14,7 +14,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 
-import HeaderMenuMobile from './header-menu-mobile'
+import HeaderMenuMobile from '@/layouts/common/header-menu-mobile'
 import Image from 'next/image'
 
 // ----------------------------------------------------------------------

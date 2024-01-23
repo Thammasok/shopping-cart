@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ProductDetailProps } from '../view'
-import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
+import { ProductDetailProps } from '@/app/product/[meta]/view'
 import { converNumber, convertCurrency } from '@/utils/format'
 import Header1 from '@/components/typography/header1'
 import Text from '@/components/typography/text'

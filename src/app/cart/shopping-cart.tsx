@@ -7,7 +7,7 @@ import ButtonContiueShopping from '@/app/cart/components/button-continue'
 import Text from '@/components/typography/text'
 import ShoppingHeader from '@/app/cart/components/shopping-header'
 import ProductList from '@/app/cart/components/product-list'
-import SubTotal from './components/sub-total'
+import SubTotal from '@/app/cart/components/sub-total'
 
 const products = [
   {

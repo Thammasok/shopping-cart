@@ -1,9 +1,8 @@
 'use client'
 
 import Header3 from '@/components/typography/header3'
-import { convertCurrency } from '@/utils/format'
 import { useState } from 'react'
-import ShippingMethodItem from './shipping-method-item'
+import ShippingMethodItem from '@/app/checkout/components/shipping-method-item'
 
 // ----------------------------------------------------------------------
 

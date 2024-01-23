@@ -9,7 +9,7 @@ import SearchForm from '@/app/product/list/components/search-form'
 const ProductView = () => {
   return (
     <div className='bg-white'>
-      <div className='mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8'>
+      <div className='min-h-screen mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8'>
         <SearchForm />
         <ProductTitle title='All Products' />
         <ProductList />

@@ -1,5 +1,7 @@
 'use client'
 
+import Header4 from '@/components/typography/header4'
+import Text from '@/components/typography/text'
 import { convertCurrency } from '@/utils/format'
 import Image from 'next/image'
 
@@ -19,7 +21,7 @@ type ProductCardProps = {
 
 const ProductCard = ({ data }: ProductCardProps) => {
   return (
-    <div key={data.id} className='group relative'>
+    <div className='group relative'>
       <div className='aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80'>
         <Image
           src={data.imageSrc}
@@ -29,19 +31,22 @@ const ProductCard = ({ data }: ProductCardProps) => {
           className='h-full w-full object-cover object-center lg:h-full lg:w-full'
         />
       </div>
-      <div className='mt-4 flex justify-between'>
+      <div className='mt-4 mb-1 flex justify-between'>
         <div>
-          <h3 className='text-sm text-gray-700'>
+          <Header4 className='text-gray-700'>
             <a href={`/product/${data.meta}`}>
               <span aria-hidden='true' className='absolute inset-0' />
               {data.name}
             </a>
-          </h3>
-          <p className='mt-1 text-sm text-gray-500'>{`จำนวนคงเหลือ ${data.stock}`}</p>
+          </Header4>
+          <Text
+            size='sm'
+            className='text-gray-500'
+          >{`จำนวนคงเหลือ ${data.stock}`}</Text>
         </div>
-        <p className='text-sm font-medium text-gray-900'>
+        <Text size='sm' className='font-medium text-gray-900'>
           {convertCurrency(data.price)}
-        </p>
+        </Text>
       </div>
     </div>
   )

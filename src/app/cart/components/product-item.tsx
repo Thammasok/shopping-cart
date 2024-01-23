@@ -1,19 +1,11 @@
 'use client'
 
-import { Fragment, useEffect, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import {
-  ArrowRightIcon,
-  MinusIcon,
-  PlusIcon,
-  TrashIcon,
-  XMarkIcon
-} from '@heroicons/react/24/outline'
+import { useEffect, useState } from 'react'
 import { converNumber, convertCurrency } from '@/utils/format'
 import Image from 'next/image'
 import InputQuantity from '@/components/input-quantity'
-import ButtonIcon from '@/components/button/button-icon'
-import RemoveItem from './remove-item'
+import RemoveItem from '@/app/cart/components/remove-item'
+import Text from '@/components/typography/text'
 
 // ----------------------------------------------------------------------
 
@@ -77,9 +69,9 @@ const ProductItem = ({
             </h3>
             <p className='ml-4'>{convertCurrency(price)}</p>
           </div>
-          <p className='mt-1 text-sm text-gray-500'>
+          <Text className='mt-1 text-sm text-gray-500'>
             {`มีสินค้าทั้งหมด ${converNumber(17088)} ชิ้น`}
-          </p>
+          </Text>
         </div>
 
         <div className='flex flex-1 items-end justify-between text-sm mt-4'>

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import ShippingDropdownList from './shipping-dropdown-list'
+import ShippingDropdownList from '@/app/checkout/components/shipping-dropdown-list'
 import InputField from '@/components/input-field'
 import Header3 from '@/components/typography/header3'
 

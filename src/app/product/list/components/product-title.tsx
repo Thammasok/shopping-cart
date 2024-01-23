@@ -1,5 +1,7 @@
 'use client'
 
+import Header2 from '@/components/typography/header2'
+
 // ----------------------------------------------------------------------
 
 type ProductTitleProps = {
@@ -7,9 +9,7 @@ type ProductTitleProps = {
 }
 
 const ProductTitle = ({ title }: ProductTitleProps) => {
-  return (
-    <h2 className='text-2xl font-bold tracking-tight text-gray-900'>{title}</h2>
-  )
+  return <Header2>{title}</Header2>
 }
 
 export default ProductTitle
