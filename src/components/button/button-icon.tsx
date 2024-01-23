@@ -4,7 +4,7 @@
 
 type InputFieldProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode
-  isBlock?: boolean
+  isblock?: boolean
 }
 
 const ButtonIcon = (props: InputFieldProps) => {

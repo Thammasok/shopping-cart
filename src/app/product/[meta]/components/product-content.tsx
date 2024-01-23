@@ -10,7 +10,7 @@ import Button from '@/components/button/button'
 
 // ----------------------------------------------------------------------
 
-const ProductForm = (product: ProductDetailProps) => {
+const ProductContent = (product: ProductDetailProps) => {
   const [quantity, setQuantity] = useState(1)
 
   const handleChange = (e: { target: { value: string } }) =>
@@ -20,15 +20,17 @@ const ProductForm = (product: ProductDetailProps) => {
 
   return (
     <div className='mt-4 lg:row-span-3 lg:mt-0'>
-      <Header1 className='mb-6 tracking-tight sm:text-3xl'>
+      <Header1 className='mb-4 tracking-tight sm:text-3xl'>
         {product.name}
       </Header1>
 
-      <Text className='text-4xl font-medium tracking-tight text-gray-900'>
+      <Text size='sm' className='mb-4'>{product.details}</Text>
+
+      <Text size='xl' className='font-medium tracking-tight text-gray-900'>
         {convertCurrency(product.price)}
       </Text>
 
-      <form className='mt-10'>
+      <form className='mt-6'>
         <InputQuantity
           label='Choose quantity:'
           id='quantity'
@@ -44,7 +46,7 @@ const ProductForm = (product: ProductDetailProps) => {
           {`มีสินค้าทั้งหมด ${converNumber(17088)} ชิ้น`}
         </Text>
 
-        <Button className='mt-6' type='submit' isBlock>
+        <Button className='mt-6' type='submit' isblock='true'>
           Add to cart
         </Button>
       </form>
@@ -52,4 +54,4 @@ const ProductForm = (product: ProductDetailProps) => {
   )
 }
 
-export default ProductForm
+export default ProductContent

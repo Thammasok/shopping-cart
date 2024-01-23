@@ -4,13 +4,13 @@
 
 type InputFieldProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode
-  isBlock?: boolean
+  isblock?: string
 }
 
 const Button = (props: InputFieldProps) => {
-  const { isBlock = false } = props
+  const { isblock = false } = props
   let customClassName = ''
-  if (isBlock) {
+  if (isblock) {
     customClassName = 'w-full'
   }
 

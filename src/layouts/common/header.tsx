@@ -74,11 +74,11 @@ const Header = ({ setShoppingCartOpen }: HeaderProps) => {
           <a href='#' className='-m-1.5 p-1.5'>
             <span className='sr-only'>Your Company</span>
             <Image
-              className='h-8 w-auto'
-              src='/logo.svg'
+              className='h-10 w-auto'
+              src='/logo2.png'
               alt='Your Company'
-              width={38}
-              height={32}
+              width={40}
+              height={40}
             />
           </a>
         </div>

@@ -21,9 +21,9 @@ const Text = ({
   }
 
   return (
-    <span className={`text-gray-600 ${customClassName} ${className}`}>
+    <p className={`text-gray-600 ${customClassName} ${className}`}>
       {children}
-    </span>
+    </p>
   )
 }
 
