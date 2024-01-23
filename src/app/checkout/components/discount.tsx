@@ -1,6 +1,7 @@
 'use client'
 
 import InputField from '@/components/input-field'
+import Header3 from '@/components/typography/header3'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
 // ----------------------------------------------------------------------
@@ -9,7 +10,8 @@ const Discount = () => {
   return (
     // <div className='mb-6 pb-6 border-b border-gray-200'>
     <div className='w-full mx-auto rounded-lg bg-white border border-gray-200 p-3 text-gray-800 font-light mb-6'>
-      <h3 className='mb-5 text-lg font-medium text-gray-90'>Discount</h3>
+      <Header3>Discount</Header3>
+
       <div className='-mx-2 flex items-end justify-start'>
         <div className='flex-grow px-2 lg:max-w-xs'>
           <InputField id='discount' type='text' placeholder='XXXXXX' />

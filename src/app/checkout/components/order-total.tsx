@@ -1,4 +1,4 @@
-import { convertCurrency } from "@/utils/currency"
+import { convertCurrency } from "@/utils/format"
 
 // ----------------------------------------------------------------------
 

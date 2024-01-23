@@ -3,6 +3,7 @@
 import MastercardIcon from '@/components/icons/mastercard'
 import VisaIcon from '@/components/icons/visa'
 import InputField from '@/components/input-field'
+import Header3 from '@/components/typography/header3'
 import {
   formatCVC,
   formatCreditCardNumber,
@@ -81,7 +82,8 @@ const PaymentMethod = () => {
 
   return (
     <div className='mb-6 border-b border-gray-200 pb-2'>
-      <h3 className='mb-5 text-lg font-medium text-gray-90'>Payment</h3>
+      <Header3>Payment</Header3>
+
       <div className='w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light mb-6'>
         <div className='w-full p-3 border-b border-gray-200'>
           <div>

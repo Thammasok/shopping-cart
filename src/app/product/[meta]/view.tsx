@@ -1,6 +1,6 @@
 'use client'
 
-import Breadcrumbs from '@/components/breadcrumb'
+// import Breadcrumbs from '@/components/breadcrumb'
 import ProductDetail from '@/app/product/[meta]/components/product-detail'
 import ProductHighlight from '@/app/product/[meta]/components/product-highlight'
 import ProductDescription from '@/app/product/[meta]/components/product-description'
@@ -97,11 +97,11 @@ const ProductDetailView = () => {
   return (
     <div className='bg-white'>
       <div className='pt-6'>
-        <Breadcrumbs
+        {/* <Breadcrumbs
           breadcrumbs={product.breadcrumbs}
           productName={product.name}
           productHref={product.href}
-        />
+        /> */}
 
         {/* Product info */}
         <div className='mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16'>

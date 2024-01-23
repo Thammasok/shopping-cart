@@ -1,6 +1,7 @@
 'use client'
 
-import { convertCurrency } from '@/utils/currency'
+import Header3 from '@/components/typography/header3'
+import { convertCurrency } from '@/utils/format'
 import { useState } from 'react'
 
 // ----------------------------------------------------------------------
@@ -40,7 +41,8 @@ const ShippingMethod = () => {
 
   return (
     <div className='mb-6 border-b border-gray-200 pb-6'>
-      <h3 className='mb-5 text-lg font-medium text-gray-90'>Delivery method</h3>
+      <Header3>Delivery method</Header3>
+
       <ul className='grid w-full gap-2 md:grid-cols-3'>
         {deliveryMethod.map((delivery, index) => (
           <li key={delivery.id}>

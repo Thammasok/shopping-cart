@@ -1,5 +1,8 @@
 'use client'
 
+import Header4 from '@/components/typography/header3'
+import Text from '@/components/typography/text'
+
 // ------------------------------------------------------------------------
 
 type ProductDetailProps = {
@@ -9,10 +12,10 @@ type ProductDetailProps = {
 const ProductDetail = ({ data }: ProductDetailProps) => {
   return (
     <div className='mt-10'>
-      <h2 className='text-sm font-medium text-gray-900'>Details</h2>
+      <Header4>Details</Header4>
 
       <div className='mt-4 space-y-6'>
-        <p className='text-sm text-gray-600'>{data}</p>
+        <Text size='sm'>{data}</Text>
       </div>
     </div>
   )

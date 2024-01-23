@@ -1,5 +1,7 @@
 'use client'
 
+import Header4 from '@/components/typography/header4'
+
 // ------------------------------------------------------------------------
 
 type ProductHighlightProps = {
@@ -8,7 +10,7 @@ type ProductHighlightProps = {
 const ProductHighlight = ({ data }: ProductHighlightProps) => {
   return (
     <div className='mt-10'>
-      <h3 className='text-sm font-medium text-gray-900'>Highlights</h3>
+      <Header4>Highlights</Header4>
 
       <div className='mt-4'>
         <ul role='list' className='list-disc space-y-2 pl-4 text-sm'>

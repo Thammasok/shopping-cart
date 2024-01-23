@@ -1,15 +1,16 @@
 'use client'
 
-import { convertCurrency } from '@/utils/currency'
+import { convertCurrency } from '@/utils/format'
 import OrderTotal from '@/app/checkout/components/order-total'
+import Header3 from '@/components/typography/header3'
 
 // ----------------------------------------------------------------------
 
 const OrderSummary = () => {
   return (
-    // <div className='mb-6 border-b border-gray-200 pb-6'>
     <div>
-      <h3 className='mb-5 text-lg font-medium text-gray-90'>Summary</h3>
+      <Header3>Summary</Header3>
+
       <div className='mb-6 pb-6 border-b border-gray-200 text-gray-800'>
         <div className='w-full flex mb-3 items-center'>
           <div className='flex-grow'>

@@ -6,10 +6,16 @@ import OrderList from '@/app/checkout/components/order-list'
 import ShippingInfomation from '@/app/checkout/components/shipping-infomation'
 import ShippingMethod from '@/app/checkout/components/shipping-method'
 import PaymentMethod from '@/app/checkout/components/payment-method'
+import { redirect } from 'next/navigation'
 
 // ----------------------------------------------------------------------
 
 const CheckoutView = () => {
+  const submitPayOrder = () => {
+    console.log('op')
+    redirect('/orders/completed')
+  }
+
   return (
     <div className='bg-white'>
       <div className='pt-6'>
@@ -28,7 +34,10 @@ const CheckoutView = () => {
                   <OrderSummary />
 
                   <div>
-                    <button className='flex items-center justify-center w-full rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700'>
+                    <button
+                      onClick={submitPayOrder}
+                      className='flex items-center justify-center w-full rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700'
+                    >
                       PAY NOW
                     </button>
                   </div>

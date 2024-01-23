@@ -1,6 +1,7 @@
 'use client'
 
-import { convertCurrency } from '@/utils/currency'
+import Header3 from '@/components/typography/header3'
+import { converNumber, convertCurrency } from '@/utils/format'
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 
@@ -38,7 +39,8 @@ const OrderList = () => {
   return (
     <>
       <div className='w-full mx-auto text-gray-800 font-light mb-6 border-b border-gray-200 pb-6'>
-        <h3 className='mb-5 text-lg font-medium text-gray-90'>Order</h3>
+        <Header3>Order</Header3>
+        
         <ul role='list' className='-my-6 divide-y divide-gray-200'>
           {products.map((product) => (
             <li key={product.id} className='flex py-6'>
@@ -60,44 +62,38 @@ const OrderList = () => {
                     </h3>
                     <p className='ml-4'>{convertCurrency(product.price)}</p>
                   </div>
-                  <p className='mt-1 text-sm text-gray-500'>{product.color}</p>
+                  <p className='mt-1 text-sm text-gray-500'>
+                    {`มีสินค้าทั้งหมด ${converNumber(17088)} ชิ้น`}
+                  </p>
                 </div>
-                <div className='flex flex-1 items-end justify-between text-sm'>
-                  <div className='mt-4 '>
-                    <div className='relative flex items-center max-w-[8rem]'>
-                      <button
-                        type='button'
-                        id='decrement-button'
-                        data-input-counter-decrement='quantity-input'
-                        className='bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-2 h-10 focus:ring-gray-100 focus:ring-2 focus:outline-none'
-                      >
-                        <MinusIcon className='w-3 h-3 text-gray-900' />
-                      </button>
-                      <input
-                        type='text'
-                        id='quantity-input'
-                        data-input-counter
-                        aria-describedby='helper-text-explanation'
-                        className='bg-gray-100 border border-gray-300 border-x-0 h-10 text-center text-gray-900 text-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5 transition-colors'
-                        placeholder='999'
-                        required
-                        value={product.quantity}
-                      />
-                      <button
-                        type='button'
-                        id='increment-button'
-                        data-input-counter-increment='quantity-input'
-                        className='bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-2 h-10 focus:ring-gray-100'
-                      >
-                        <PlusIcon className='w-3 h-3 text-gray-900' />
-                      </button>
-                    </div>
-                    <p
-                      id='helper-text-explanation'
-                      className='mt-2 text-sm text-gray-500'
+                <div className='flex flex-1 items-center justify-between text-sm mt-4'>
+                  <div className='relative flex items-center max-w-[8rem]'>
+                    <button
+                      type='button'
+                      id='decrement-button'
+                      data-input-counter-decrement='quantity-input'
+                      className='bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-2 h-10 focus:ring-gray-100 focus:ring-2 focus:outline-none'
                     >
-                      {`มีสินค้าทั้งหมด ${convertCurrency(17088)} ชิ้น`}
-                    </p>
+                      <MinusIcon className='w-3 h-3 text-gray-900' />
+                    </button>
+                    <input
+                      type='text'
+                      id='quantity-input'
+                      data-input-counter
+                      aria-describedby='helper-text-explanation'
+                      className='bg-gray-100 border border-gray-300 border-x-0 h-10 text-center text-gray-900 text-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5 transition-colors'
+                      placeholder='999'
+                      required
+                      value={product.quantity}
+                    />
+                    <button
+                      type='button'
+                      id='increment-button'
+                      data-input-counter-increment='quantity-input'
+                      className='bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-2 h-10 focus:ring-gray-100'
+                    >
+                      <PlusIcon className='w-3 h-3 text-gray-900' />
+                    </button>
                   </div>
 
                   <div className='flex'>

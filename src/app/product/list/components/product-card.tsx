@@ -1,6 +1,6 @@
 'use client'
 
-import { convertCurrency } from '@/utils/currency'
+import { convertCurrency } from '@/utils/format'
 import Image from 'next/image'
 
 // ----------------------------------------------------------------------
@@ -13,8 +13,7 @@ type ProductCardProps = {
     imageSrc: string
     imageAlt: string
     price: number
-    color: string
-    href?: string
+    stock: number
   }
 }
 
@@ -38,7 +37,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
               {data.name}
             </a>
           </h3>
-          <p className='mt-1 text-sm text-gray-500'>{data.color}</p>
+          <p className='mt-1 text-sm text-gray-500'>{`จำนวนคงเหลือ ${data.stock}`}</p>
         </div>
         <p className='text-sm font-medium text-gray-900'>
           {convertCurrency(data.price)}

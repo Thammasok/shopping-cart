@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import ShippingDropdownList from './shipping-dropdown-list'
 import InputField from '@/components/input-field'
+import Header3 from '@/components/typography/header3'
 
 // ----------------------------------------------------------------------
 
@@ -30,9 +31,7 @@ const ShippingInfomation = () => {
 
   return (
     <div className='mb-6 border-b border-gray-200 pb-6'>
-      <h3 className='mb-5 text-lg font-medium text-gray-90'>
-        Shipping information
-      </h3>
+      <Header3>Shipping information</Header3>
 
       <div className='grid gap-6 mb-2 md:grid-cols-2'>
         <InputField
