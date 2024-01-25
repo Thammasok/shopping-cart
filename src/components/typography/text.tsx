@@ -21,7 +21,7 @@ const Text = ({
   }
 
   return (
-    <p className={`text-gray-600 ${customClassName} ${className}`}>
+    <p className={`${customClassName} ${className} text-gray-600`}>
       {children}
     </p>
   )
