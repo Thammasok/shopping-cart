@@ -1,33 +1,65 @@
 'use client'
 
-import { useState } from 'react'
-import { ProductDetailProps } from '@/app/product/[meta]/view'
+import { useEffect, useState } from 'react'
 import { converNumber, convertCurrency } from '@/utils/format'
 import Header1 from '@/components/typography/header1'
 import Text from '@/components/typography/text'
 import InputQuantity from '@/components/input-quantity'
 import Button from '@/components/button/button'
+import { GetProductDetailServiceResponse } from '@/services/product-detail'
+import useCartStore from '@/app/cart/useCartStore'
 
 // ----------------------------------------------------------------------
 
-const ProductContent = (product: ProductDetailProps) => {
+const ProductContent = (product: GetProductDetailServiceResponse) => {
   const [quantity, setQuantity] = useState(1)
+  const { addProductToCart } = useCartStore()
 
-  const handleChange = (e: { target: { value: string } }) =>
+  const handleQuantityChange = (e: { target: { value: string } }) =>
     setQuantity(Number(e.target.value))
-  const incrementQuantity = () => setQuantity(quantity + 1)
-  const decrementQuantity = () => setQuantity(quantity - 1)
+
+  const handleQuantityOnBlur = (e: { target: { value: string } }) => {
+    const value = Number(e.target.value)
+    if (value > 0 && value < product.stock) {
+      setQuantity(value)
+    } else {
+      setQuantity(1)
+    }
+  }
+
+  const incrementQuantity = () => {
+    if (quantity < product.stock) {
+      setQuantity(quantity + 1)
+    }
+  }
+
+  const decrementQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1)
+    }
+  }
+
+  const addToCart = () => {
+    // TODO: Add to cart
+    console.log('product', product)
+    addProductToCart({
+      product_id: product.id,
+      quantity
+    })
+  }
 
   return (
     <div className='mt-4 lg:row-span-3 lg:mt-0'>
       <Header1 className='mb-4 tracking-tight sm:text-3xl'>
-        {product.name}
+        {product.product_name}
       </Header1>
 
-      <Text size='sm' className='mb-4'>{product.details}</Text>
+      <Text size='sm' className='mb-4'>
+        {product.product_brand}
+      </Text>
 
       <Text size='xl' className='font-medium tracking-tight text-gray-900'>
-        {convertCurrency(product.price)}
+        {convertCurrency(product.product_price)}
       </Text>
 
       <form className='mt-6'>
@@ -37,16 +69,22 @@ const ProductContent = (product: ProductDetailProps) => {
           placeholder='999'
           increment={incrementQuantity}
           decrement={decrementQuantity}
-          onChange={handleChange}
+          onChange={handleQuantityChange}
+          onBlur={handleQuantityOnBlur}
           value={quantity}
           required
         />
 
         <Text size='sm' className='mt-3'>
-          {`มีสินค้าทั้งหมด ${converNumber(17088)} ชิ้น`}
+          {`มีสินค้าทั้งหมด ${converNumber(product.stock)} ชิ้น`}
         </Text>
 
-        <Button className='mt-6' type='submit' isblock='true'>
+        <Button
+          className='mt-6'
+          type='button'
+          isblock='true'
+          onClick={addToCart}
+        >
           Add to cart
         </Button>
       </form>

@@ -16,6 +16,8 @@ import { PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 
 import HeaderMenuMobile from '@/layouts/common/header-menu-mobile'
 import Image from 'next/image'
+import useCartStore from '@/app/cart/useCartStore'
+import Badge from '@/components/badge'
 
 // ----------------------------------------------------------------------
 
@@ -63,6 +65,7 @@ type HeaderProps = {
 
 const Header = ({ setShoppingCartOpen }: HeaderProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const totalProduct = useCartStore((state) => state.cart)
 
   return (
     <header className='bg-white'>
@@ -119,9 +122,10 @@ const Header = ({ setShoppingCartOpen }: HeaderProps) => {
             className='text-sm font-semibold leading-6 text-gray-900'
           >
             <ShoppingCartIcon className='h-6 w-6 absolute' aria-hidden='true' />
-            <span className='relative bg-red-500 text-xs text-white rounded-md p-1 left-4 -top-[10px]'>
-              5
-            </span>
+
+            {totalProduct.length > 0 ? (
+              <Badge total={totalProduct.length} />
+            ) : null}
           </button>
           <a
             href='#'

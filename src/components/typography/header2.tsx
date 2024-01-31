@@ -1,6 +1,6 @@
 const Header2 = ({
   children,
-  className
+  className = ''
 }: {
   children: React.ReactNode
   className?: string
