@@ -21,7 +21,7 @@ const SummaryText = ({
   return (
     <div className='w-full flex mb-3 items-center'>
       <div className='flex-grow'>
-        <Text size={size}>{text}</Text>
+        <Text size={size} className='font-regular'>{text}</Text>
       </div>
       <div className='pl-3'>
         <Text className={className}>

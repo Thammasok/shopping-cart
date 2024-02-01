@@ -70,13 +70,12 @@ const ProductItem = ({
             <p className='ml-4'>{convertCurrency(price)}</p>
           </div>
           <Text className='mt-1 text-sm text-gray-500'>
-            {`มีสินค้าทั้งหมด ${converNumber(17088)} ชิ้น`}
+            {`Stock ${converNumber(17088)} items`}
           </Text>
         </div>
 
         <div className='flex flex-1 items-end justify-between text-sm mt-4'>
           <InputQuantity
-            label='Choose quantity:'
             id='quantity'
             placeholder='999'
             increment={incrementQuantity}

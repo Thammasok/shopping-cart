@@ -15,6 +15,23 @@ const OrderResult = () => {
       </Header1>
 
       <Text size='md' className='text-gray-600 my-10'>
+        {'Date and time of payment 01/03/2020 13:30:00 Order number '}
+        <a
+          className='text-sm font-medium text-indigo-600'
+          href='/orders/102323'
+        >
+          102323
+        </a>
+        {' You can track the product via Kerry with number '}
+        <a
+          className='text-sm font-medium text-indigo-600'
+          href='#?tracking_id=51547878755545848512'
+        >
+          51547878755545848512
+        </a>
+      </Text>
+
+      {/* <Text size='md' className='text-gray-600 my-10'>
         {'วันเวลาที่ชําระเงิน 1/3/2020 13:30:00 หมายเลขคําสั่งซื้อ '}
         <a
           className='text-sm font-medium text-indigo-600'
@@ -29,7 +46,7 @@ const OrderResult = () => {
         >
           51547878755545848512
         </a>
-      </Text>
+      </Text> */}
     </div>
   )
 }

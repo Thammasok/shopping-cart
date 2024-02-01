@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { converNumber, convertCurrency } from '@/utils/format'
 import Header1 from '@/components/typography/header1'
 import Text from '@/components/typography/text'
@@ -64,7 +64,7 @@ const ProductContent = (product: GetProductDetailServiceResponse) => {
 
       <form className='mt-6'>
         <InputQuantity
-          label='Choose quantity:'
+          label='Quantity:'
           id='quantity'
           placeholder='999'
           increment={incrementQuantity}
@@ -76,7 +76,7 @@ const ProductContent = (product: GetProductDetailServiceResponse) => {
         />
 
         <Text size='sm' className='mt-3'>
-          {`มีสินค้าทั้งหมด ${converNumber(product.stock)} ชิ้น`}
+          {`Stock ${converNumber(product.stock)} items`}
         </Text>
 
         <Button

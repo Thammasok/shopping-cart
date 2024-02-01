@@ -15,7 +15,7 @@ const NotificationInApplication = () => {
       />
       <label
         htmlFor='in-applications'
-        className='ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+        className='ms-2 text-sm font-medium text-gray-900'
       >
         In Applications
       </label>
