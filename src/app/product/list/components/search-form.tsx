@@ -2,7 +2,6 @@
 
 import Button from '@/components/button/button'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import { ChangeEvent, FormEvent, useState } from 'react'
 
 // ----------------------------------------------------------------------
 

@@ -48,7 +48,7 @@ const ProductView = () => {
           onSubmitSearch={onSubmitSearch}
         />
 
-        <ProductTitle title='สินค้าทั้งหมด' />
+        <ProductTitle title='All Products' />
 
         {products && products.total > 0 ? (
           <ProductList products={products} />

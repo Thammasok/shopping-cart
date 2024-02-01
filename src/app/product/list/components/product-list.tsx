@@ -1,7 +1,7 @@
 'use client'
 
 import ProductCard from '@/app/product/list/components/product-card'
-import { GetProductListServiceResponse } from '@/services'
+import { GetProductListServiceResponse } from '@/services/product-lists'
 
 // const products = [
 //   {

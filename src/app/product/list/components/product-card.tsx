@@ -3,7 +3,7 @@
 import Header4 from '@/components/typography/header4'
 import Text from '@/components/typography/text'
 import config from '@/config'
-import { ProductType } from '@/services'
+import { ProductType } from '@/services/product-lists'
 import { convertCurrency } from '@/utils/format'
 import Image from '@/components/image'
 
@@ -32,7 +32,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
             {data.product_name}
           </a>
         </Header4>
-        <Text size='sm' className='font-medium text-gray-900'>
+        <Text size='md' className='font-medium text-gray-900'>
           {convertCurrency(data.product_price)}
         </Text>
       </div>
