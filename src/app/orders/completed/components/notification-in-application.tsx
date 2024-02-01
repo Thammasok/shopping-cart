@@ -1,7 +1,5 @@
 'use client'
 
-import { EnvelopeIcon } from '@heroicons/react/24/outline'
-
 // ----------------------------------------------------------------------
 
 const NotificationInApplication = () => {
