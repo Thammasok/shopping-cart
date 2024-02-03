@@ -2,14 +2,14 @@
 
 import MastercardIcon from '@/components/icons/mastercard'
 import VisaIcon from '@/components/icons/visa'
+import Image from '@/components/image'
 import InputField from '@/components/input-field'
 import Header3 from '@/components/typography/header3'
 import {
-  formatCVC,
+  formatCVV,
   formatCreditCardNumber,
   formatExpirationDate
 } from '@/utils/credit-cart-format'
-import Image from 'next/image'
 import { useState } from 'react'
 
 // ----------------------------------------------------------------------
@@ -23,7 +23,7 @@ type CardInfoTypes = {
   number: string
   name: string
   expiry: string
-  cvc: string
+  cvv: string
   issuer: string
   focused: string
   formData: null
@@ -36,7 +36,7 @@ const PaymentMethod = () => {
     number: '',
     name: '',
     expiry: '',
-    cvc: '',
+    cvv: '',
     issuer: '',
     focused: '',
     formData: null
@@ -74,9 +74,9 @@ const PaymentMethod = () => {
     } else if (target.name === 'expiry') {
       target.value = formatExpirationDate(target.value)
       setCardInfo({ ...cardInfo, expiry: target.value })
-    } else if (target.name === 'cvc') {
-      target.value = formatCVC(target.value)
-      setCardInfo({ ...cardInfo, cvc: target.value })
+    } else if (target.name === 'cvv') {
+      target.value = formatCVV(target.value)
+      setCardInfo({ ...cardInfo, cvv: target.value })
     }
   }
 
@@ -165,7 +165,7 @@ const PaymentMethod = () => {
                 <InputField
                   type='text'
                   label='Security code'
-                  name='cvc'
+                  name='cvv'
                   placeholder='000'
                   onChange={handleCardNumberChange}
                   onFocus={handleInputFocus}
@@ -176,6 +176,7 @@ const PaymentMethod = () => {
         </div>
 
         {/* Line Pay */}
+        {/* Not use for now (if you want to use it: remove disabled attribute on input) */}
         <div className='w-full p-3'>
           <label
             htmlFor='payment-linepay'
@@ -189,6 +190,7 @@ const PaymentMethod = () => {
               className='form-radio h-5 w-5 text-indigo-500 mr-2'
               onChange={handlePaymentMethodChange}
               checked={paymentMethod === 'linepay'}
+              disabled
             />
             Line Pay
           </label>

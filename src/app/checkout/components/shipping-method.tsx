@@ -4,34 +4,14 @@ import Header3 from '@/components/typography/header3'
 import { useState } from 'react'
 import ShippingMethodItem from '@/app/checkout/components/shipping-method-item'
 
+import SHIPPING_METHOD from '@/assets/data/shipping_method.json'
+
 // ----------------------------------------------------------------------
 
-const deliveryMethod = [
-  {
-    id: 1,
-    name: 'kerry',
-    shippingTime: '4–10 business days',
-    condition: '',
-    price: 50
-  },
-  {
-    id: 2,
-    name: 'thai post',
-    shippingTime: '5–15 business days',
-    condition: '',
-    price: 50
-  },
-  {
-    id: 3,
-    name: 'lineman',
-    shippingTime: '1-2 business days',
-    condition: '*Bangkok and perimeter only',
-    price: 70
-  }
-]
-
 const ShippingMethod = () => {
-  const [shippingMethod, setShippingMethod] = useState(deliveryMethod[0].name)
+  const [shippingMethod, setShippingMethod] = useState<string>(
+    SHIPPING_METHOD[0].name
+  )
 
   const handleShippingMethodChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -44,10 +24,10 @@ const ShippingMethod = () => {
       <Header3>Delivery method</Header3>
 
       <ul className='grid w-full gap-2 md:grid-cols-3'>
-        {deliveryMethod.map((delivery) => (
+        {SHIPPING_METHOD.map((shipping) => (
           <ShippingMethodItem
-            {...delivery}
-            key={`shipping-${delivery.id}`}
+            {...shipping}
+            key={`shipping-${shipping.id}`}
             onChange={handleShippingMethodChange}
             shippingMethod={shippingMethod}
           />

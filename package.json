@@ -13,6 +13,7 @@
     "@heroicons/react": "^2.1.1",
     "@redux-devtools/extension": "^3.3.0",
     "axios": "^1.6.7",
+    "immer": "^10.0.3",
     "next": "14.0.4",
     "payment": "^2.4.6",
     "react": "^18",

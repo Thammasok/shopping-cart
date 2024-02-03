@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import ButtonLink from '@/components/button/button-link'
 import ButtonContiueShopping from '@/app/cart/components/button-continue'
@@ -8,29 +8,11 @@ import Text from '@/components/typography/text'
 import ShoppingHeader from '@/app/cart/components/shopping-header'
 import ProductList from '@/app/cart/components/product-list'
 import SubTotal from '@/app/cart/components/sub-total'
-
-const products = [
-  {
-    id: 1,
-    name: '43 Piece dinner set',
-    meta: '43-piece-dinner-set',
-    imageSrc:
-      'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-    imageAlt: '43 Piece dinner set.',
-    price: 35.0,
-    amount: 1
-  },
-  {
-    id: 2,
-    name: 'Steel Office Table',
-    meta: 'steel-office-table',
-    imageSrc:
-      'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-    imageAlt: 'Steel Office Table.',
-    price: 52,
-    amount: 2
-  }
-]
+import GetProductInCartService, {
+  GetProductInCartServiceResponse
+} from '@/services/cart/get-product-list'
+import { calculateTotalPrice } from '@/utils/total-price'
+import useCartStore from '@/app/cart/hooks/use-cart-store'
 
 // ----------------------------------------------------------------------
 
@@ -43,6 +25,12 @@ const ShoppingCartView = ({
   openShoppingCart,
   setOpenShoppingCart
 }: ShoppingCartViewProps) => {
+  const { cart, totalPrice, getProductListInCart } = useCartStore()
+
+  useEffect(() => {
+    getProductListInCart()
+  }, [getProductListInCart])
+
   return (
     <Transition.Root show={openShoppingCart} as={Fragment}>
       <Dialog as='div' className='relative z-10' onClose={setOpenShoppingCart}>
@@ -77,11 +65,11 @@ const ShoppingCartView = ({
                         closeShoppingCart={() => setOpenShoppingCart(false)}
                       />
 
-                      <ProductList products={products} />
+                      <ProductList list={cart} />
                     </div>
 
                     <div className='border-t border-gray-200 px-4 py-6 sm:px-6'>
-                      <SubTotal total={87} />
+                      <SubTotal total={totalPrice} />
 
                       <Text size='sm' className='mt-0.5 text-gray-500'>
                         Shipping and taxes calculated at checkout.

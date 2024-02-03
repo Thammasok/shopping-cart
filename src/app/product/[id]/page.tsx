@@ -1,4 +1,4 @@
-import ProductDetailView from '@/app/product/[meta]/view'
+import ProductDetailView from '@/app/product/[id]/view'
 
 export const metadata = {
   title: 'Product Detail'

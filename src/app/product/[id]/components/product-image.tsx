@@ -15,7 +15,7 @@ const ProductImage = (product: GetProductDetailServiceResponse) => {
           alt={product.product_name}
           width={767}
           height={575}
-          className='h-full w-full object-cover object-center'
+          className='h-full w-full object-contain object-center'
         />
       </div>
     </div>

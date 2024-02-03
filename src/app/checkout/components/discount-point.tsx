@@ -1,10 +1,24 @@
 'use client'
 
 import Text from '@/components/typography/text'
+import getPointService from '@/services/point'
+import { converNumber } from '@/utils/format'
+import { useEffect, useState } from 'react'
 
 // ----------------------------------------------------------------------
 
 const DiscountPoint = () => {
+  const [point, setPoint] = useState(0)
+
+  useEffect(() => {
+    const getPoint = async () => {
+      const result = await getPointService()
+      setPoint(result.point)
+    }
+
+    getPoint()
+  }, [])
+
   return (
     <div className='flex justify-between mt-5'>
       <div className='flex items-center mb-4'>
@@ -16,14 +30,14 @@ const DiscountPoint = () => {
         />
         <label
           htmlFor='default-checkbox'
-          className='ms-2 text-md font-medium text-gray-900'
+          className='ms-2 text-md font-medium text-gray-900 cursor-pointer'
         >
           Use your points
         </label>
       </div>
       <div>
         <Text size='md' className='font-medium text-gray-900'>
-          1,000 Points
+          {`${converNumber(point)} Points`}
         </Text>
       </div>
     </div>

@@ -8,14 +8,22 @@ import ShippingMethod from '@/app/checkout/components/shipping-method'
 import PaymentMethod from '@/app/checkout/components/payment-method'
 import { redirect } from 'next/navigation'
 import Button from '@/components/button/button'
+import { useEffect } from 'react'
+import useCartStore from '@/app/cart/hooks/use-cart-store'
 
 // ----------------------------------------------------------------------
 
 const CheckoutView = () => {
+  const { getProductListInCart } = useCartStore()
+
   const submitPayOrder = () => {
     console.log('op')
     redirect('/orders/completed')
   }
+
+  useEffect(() => {
+    getProductListInCart()
+  }, [getProductListInCart])
 
   return (
     <div className='bg-white'>

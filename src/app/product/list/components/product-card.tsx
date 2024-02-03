@@ -22,7 +22,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
           alt={data.product_name}
           width={280}
           height={320}
-          className='h-full w-full object-cover object-center lg:h-full lg:w-full'
+          className='h-full w-full object-contain bg-white object-center lg:h-full lg:w-full'
         />
       </div>
       <div className='mt-4 mb-1 flex justify-between'>

@@ -4,13 +4,13 @@ import { mockProductListResponse } from '@/mock'
 
 // ------------------------------------------------
 
-type GetProductListServiceParams = {
+type GetProductListServiceRequest = {
   keyword?: string
   offset?: number
   limit?: number
 }
 
-export type ProductType = {
+export type ProductDetail = {
   id: number
   product_name: string
   product_price: number
@@ -19,14 +19,14 @@ export type ProductType = {
 
 export type GetProductListServiceResponse = {
   total: number
-  products: ProductType[]
+  products: ProductDetail[]
 }
 
 const getProductListService = async ({
   keyword = '',
   offset = 0,
   limit = 50
-}: GetProductListServiceParams): Promise<GetProductListServiceResponse> => {
+}: GetProductListServiceRequest): Promise<GetProductListServiceResponse> => {
   // const queryString =
   //     '?' +
   //     new URLSearchParams({

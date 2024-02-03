@@ -1,8 +1,8 @@
 'use client'
 
 // import Breadcrumbs from '@/components/breadcrumb'
-import ProductContent from '@/app/product/[meta]/components/product-content'
-import ProductImage from '@/app/product/[meta]/components/product-image'
+import ProductContent from '@/app/product/[id]/components/product-content'
+import ProductImage from '@/app/product/[id]/components/product-image'
 import getProductDetailService, {
   GetProductDetailServiceResponse
 } from '@/services/product-detail'
@@ -12,18 +12,18 @@ import { useEffect, useState } from 'react'
 // ----------------------------------------------------------------------------
 
 const ProductDetailView = () => {
-  const { meta } = useParams<{ meta: string }>()
+  const { id } = useParams<{ id: string }>()
   const [productDetail, setProductDetail] =
     useState<GetProductDetailServiceResponse | null>(null)
 
   useEffect(() => {
     const getProductDetail = async () => {
-      const result = await getProductDetailService(meta)
+      const result = await getProductDetailService(id)
       setProductDetail(result)
     }
 
     getProductDetail()
-  }, [meta])
+  }, [id])
 
   return (
     <div className='bg-white min-h-[calc(100vh-88px)]'>

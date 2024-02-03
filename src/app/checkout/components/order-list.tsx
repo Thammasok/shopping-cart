@@ -1,42 +1,26 @@
 'use client'
 
 import ProductItem from '@/app/cart/components/product-item'
+import useCartStore from '@/app/cart/hooks/use-cart-store'
 import Header3 from '@/components/typography/header3'
 
 // ----------------------------------------------------------------------
 
-const products = [
-  {
-    id: 1,
-    name: '43 Piece dinner set',
-    meta: '43-piece-dinner-set',
-    imageSrc:
-      'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-    imageAlt: '43 Piece dinner set.',
-    price: 35.0,
-    amount: 1
-  },
-  {
-    id: 2,
-    name: 'Steel Office Table',
-    meta: 'steel-office-table',
-    imageSrc:
-      'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-    imageAlt: 'Steel Office Table.',
-    price: 52,
-    amount: 2
-  }
-]
-
 const OrderList = () => {
+  const { cart } = useCartStore()
+
   return (
     <>
       <div className='w-full mx-auto text-gray-800 font-light mb-6 border-b border-gray-200 pb-6'>
-        <Header3>Order</Header3>
+        <Header3>Orders</Header3>
 
         <ul role='list' className='-my-6 divide-y divide-gray-200'>
-          {products.map((product) => (
-            <ProductItem key={`product-item-${product.id}`} isHiddenLable {...product} />
+          {cart.map((product) => (
+            <ProductItem
+              key={`product-item-${product.id}`}
+              isHiddenLable
+              {...product}
+            />
           ))}
         </ul>
       </div>

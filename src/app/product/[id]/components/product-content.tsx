@@ -7,13 +7,14 @@ import Text from '@/components/typography/text'
 import InputQuantity from '@/components/input-quantity'
 import Button from '@/components/button/button'
 import { GetProductDetailServiceResponse } from '@/services/product-detail'
-import useCartStore from '@/app/cart/useCartStore'
+import useCartStore from '@/app/cart/hooks/use-cart-store'
+import addToCartService from '@/services/cart/add-to-cart'
 
 // ----------------------------------------------------------------------
 
 const ProductContent = (product: GetProductDetailServiceResponse) => {
   const [quantity, setQuantity] = useState(1)
-  const { addProductToCart } = useCartStore()
+  const { getProductListInCart } = useCartStore()
 
   const handleQuantityChange = (e: { target: { value: string } }) =>
     setQuantity(Number(e.target.value))
@@ -39,13 +40,20 @@ const ProductContent = (product: GetProductDetailServiceResponse) => {
     }
   }
 
-  const addToCart = () => {
-    // TODO: Add to cart
-    console.log('product', product)
-    addProductToCart({
+  const addToCart = async () => {
+    const result = await addToCartService({
       product_id: product.id,
       quantity
     })
+
+    if (result) {
+      getProductListInCart()
+      // For Counting Product in Cart and save it in Local Storage
+      //   addToCartLocal({
+      //     product_id: product.id,
+      //     quantity
+      //   })
+    }
   }
 
   return (

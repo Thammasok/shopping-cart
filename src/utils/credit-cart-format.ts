@@ -39,7 +39,7 @@ export const formatCreditCardNumber = (value: string) => {
   return nextValue.trim()
 }
 
-export const formatCVC = (value: string) => {
+export const formatCVV = (value: string) => {
   const clearValue = clearNumber(value)
   let maxLength = 3
 

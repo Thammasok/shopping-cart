@@ -1,63 +1,91 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { converNumber, convertCurrency } from '@/utils/format'
-import Image from 'next/image'
+import { converNumber, convertCurrency, isNumber } from '@/utils/format'
 import InputQuantity from '@/components/input-quantity'
 import RemoveItem from '@/app/cart/components/remove-item'
 import Text from '@/components/typography/text'
+import { ProductDetailInCart } from '@/services/cart/get-product-list'
+import config from '@/config'
+import Image from '@/components/image'
+import updateProductInCartService from '@/services/cart/update-product'
+import useCartStore from '@/app/cart/hooks/use-cart-store'
 
 // ----------------------------------------------------------------------
 
-type ProductItemProps = {
-  id: number
-  name: string
-  meta: string
-  imageSrc: string
-  imageAlt: string
-  price: number
-  amount: number
+type ProductItemProps = ProductDetailInCart & {
   isHiddenLable?: boolean
 }
 
 const ProductItem = ({
   id,
-  name,
-  meta,
-  imageSrc,
-  imageAlt,
-  price,
-  amount,
+  // user_id,
+  product_id,
+  quantity,
+  product_name,
+  product_price,
+  product_image,
+  stock,
   isHiddenLable = false
 }: ProductItemProps) => {
-  const [quantity, setQuantity] = useState(1)
+  const [newQuantity, setNewQuantity] = useState(1)
+  const { getProductListInCart } = useCartStore()
 
-  const handleChange = (e: { target: { value: string } }) =>
-    setQuantity(Number(e.target.value))
-  const incrementQuantity = () => setQuantity(quantity + 1)
-  const decrementQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1)
+  const handleQuantityChange = (e: { target: { value: string } }) => {
+    if (isNumber(e.target.value)) {
+      setNewQuantity(Number(e.target.value))
     }
   }
 
-  const handleRemoveItem = () => {
-    console.log('remove item')
+  const handleQuantityOnBlur = (e: { target: { value: string } }) => {
+    const value = Number(e.target.value)
+    if (value > 0 && value < stock) {
+      setNewQuantity(value)
+    } else {
+      setNewQuantity(1)
+    }
+  }
+
+  const incrementQuantity = () => {
+    if (newQuantity < stock) {
+      setNewQuantity(newQuantity + 1)
+    }
+  }
+
+  const decrementQuantity = () => {
+    if (newQuantity > 1) {
+      setNewQuantity(newQuantity - 1)
+    }
+  }
+
+  const handleRemoveItem = async () => {
+    const result = await updateProductInCartService({
+      product_id: id,
+      quantity: 0
+    })
+
+    if (result) {
+      // Get Cart Service
+      alert('Remove item success')
+
+      // Get Services for update Product List in cart
+      getProductListInCart()
+    }
   }
 
   useEffect(() => {
-    setQuantity(amount)
-  }, [amount])
+    setNewQuantity(quantity)
+  }, [quantity])
 
   return (
     <li className='flex py-6'>
       <div className='h-32 w-32 flex-shrink-0 overflow-hidden rounded-md border border-gray-200'>
         <Image
-          src={imageSrc}
-          alt={imageAlt}
+          src={`${config.imageUrl}/${product_image}`}
+          alt={product_name}
           width={94}
           height={94}
-          className='h-full w-full object-cover object-center'
+          className='h-full w-full object-contain object-center bg-white'
         />
       </div>
 
@@ -65,12 +93,12 @@ const ProductItem = ({
         <div>
           <div className='flex justify-between text-base font-medium text-gray-900'>
             <h3>
-              <a href={`/product/${meta}`}>{name}</a>
+              <a href={`/product/${product_id}`}>{product_name}</a>
             </h3>
-            <p className='ml-4'>{convertCurrency(price)}</p>
+            <p className='ml-4'>{convertCurrency(product_price)}</p>
           </div>
           <Text className='mt-1 text-sm text-gray-500'>
-            {`Stock ${converNumber(17088)} items`}
+            {`Stock ${converNumber(stock)} items`}
           </Text>
         </div>
 
@@ -80,8 +108,9 @@ const ProductItem = ({
             placeholder='999'
             increment={incrementQuantity}
             decrement={decrementQuantity}
-            onChange={handleChange}
-            value={quantity}
+            onChange={handleQuantityChange}
+            onBlur={handleQuantityOnBlur}
+            value={newQuantity}
             isHiddenLable={isHiddenLable}
             required
           />
