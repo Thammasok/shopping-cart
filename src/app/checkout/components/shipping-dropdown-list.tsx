@@ -11,28 +11,20 @@ import {
 type ShippingDropdownListProps = {
   label: string
   list: ProvinceType[] | DistrictType[] | SubDistrictType[]
-  child?: string
-  selected: {
-    id: number
-    name: string
-  }
+  name: string
   setSelected: Function
-  childsId?: Array<string>
-  setChilds?: Array<Function>
 }
 
 const ShippingDropdownList = ({
   label,
   list,
-  selected,
+  name,
   setSelected
 }: ShippingDropdownListProps) => {
-  const onChangeHandle = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const name = e.target.getAttribute('data-name')
-
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelected({
       id: Number(e.target.value),
-      name
+      field: name
     })
   }
 
@@ -45,18 +37,13 @@ const ShippingDropdownList = ({
         {label}
       </label>
       <select
-        onChange={onChangeHandle}
+        onChange={handleSelectChange}
         className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5'
       >
-        <option label='Select ...' />
+        <option label='Select ...' value='0' />
         {list &&
           list.map((item: any) => (
-            <option
-              key={item.id}
-              value={item.id}
-              data-name={item.name_th}
-              selected={item.id === selected.id}
-            >
+            <option key={item.id} value={item.id}>
               {item.name_th}
             </option>
           ))}

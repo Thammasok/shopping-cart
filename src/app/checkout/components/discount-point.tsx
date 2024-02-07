@@ -4,11 +4,18 @@ import Text from '@/components/typography/text'
 import getPointService from '@/services/point'
 import { converNumber } from '@/utils/format'
 import { useEffect, useState } from 'react'
+import useCheckoutStore from '@/app/checkout/hooks/use-checkout-store'
 
 // ----------------------------------------------------------------------
 
 const DiscountPoint = () => {
-  const [point, setPoint] = useState(0)
+  const { point, setPoint, setIsUsePoint } = useCheckoutStore(
+    (state) => state
+  )
+
+  const handleUsePointChange = (e: { target: { checked: boolean } }) => {
+    setIsUsePoint(e.target.checked)
+  }
 
   useEffect(() => {
     const getPoint = async () => {
@@ -17,7 +24,7 @@ const DiscountPoint = () => {
     }
 
     getPoint()
-  }, [])
+  }, [setPoint])
 
   return (
     <div className='flex justify-between mt-5'>
@@ -25,8 +32,8 @@ const DiscountPoint = () => {
         <input
           id='default-checkbox'
           type='checkbox'
-          value='true'
           className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500'
+          onChange={handleUsePointChange}
         />
         <label
           htmlFor='default-checkbox'
@@ -37,7 +44,7 @@ const DiscountPoint = () => {
       </div>
       <div>
         <Text size='md' className='font-medium text-gray-900'>
-          {`${converNumber(point)} Points`}
+          {`${converNumber(point.point)} Points`}
         </Text>
       </div>
     </div>

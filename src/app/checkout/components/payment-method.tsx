@@ -11,6 +11,7 @@ import {
   formatExpirationDate
 } from '@/utils/credit-cart-format'
 import { useState } from 'react'
+import useCheckoutStore from '@/app/checkout/hooks/use-checkout-store'
 
 // ----------------------------------------------------------------------
 
@@ -26,7 +27,6 @@ type CardInfoTypes = {
   cvv: string
   issuer: string
   focused: string
-  formData: null
 }
 
 const PaymentMethod = () => {
@@ -38,9 +38,10 @@ const PaymentMethod = () => {
     expiry: '',
     cvv: '',
     issuer: '',
-    focused: '',
-    formData: null
+    focused: ''
   })
+
+  const { payment, setPaymentInformation } = useCheckoutStore((state) => state)
 
   const handlePaymentMethodChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -53,16 +54,19 @@ const PaymentMethod = () => {
       ...cardInfo,
       focused: target.name
     })
+
+    setPaymentInformation(cardInfo)
   }
 
   const handleCardNumberChange = ({
     target
   }: React.ChangeEvent<HTMLInputElement>) => {
-    let value: string | undefined = ''
-
-    if (target.name === 'number') {
+    if (target.name === 'fullname') {
+      setCardInfo({ ...cardInfo, name: target.value })
+    } else if (target.name === 'number') {
       if (target.value.startsWith('5')) {
         setCardProvider(CreditCardProvider.MASTERCARD)
+        setCardInfo({ ...cardInfo, issuer: CreditCardProvider.MASTERCARD })
       }
 
       if (target.value.startsWith('4')) {
@@ -70,7 +74,7 @@ const PaymentMethod = () => {
       }
 
       target.value = formatCreditCardNumber(target.value)
-      setCardInfo({ ...cardInfo, number: target.value })
+      setCardInfo({ ...cardInfo, number: target.value, issuer: cardProvider })
     } else if (target.name === 'expiry') {
       target.value = formatExpirationDate(target.value)
       setCardInfo({ ...cardInfo, expiry: target.value })
@@ -78,6 +82,8 @@ const PaymentMethod = () => {
       target.value = formatCVV(target.value)
       setCardInfo({ ...cardInfo, cvv: target.value })
     }
+
+    setPaymentInformation(cardInfo)
   }
 
   return (
@@ -107,7 +113,7 @@ const PaymentMethod = () => {
             <InputField
               type='text'
               label='Name on card'
-              name='name'
+              name='fullname'
               placeholder='John Smith'
               onChange={handleCardNumberChange}
               onFocus={handleInputFocus}

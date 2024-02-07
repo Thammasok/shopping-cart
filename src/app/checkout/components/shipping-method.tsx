@@ -5,18 +5,18 @@ import { useState } from 'react'
 import ShippingMethodItem from '@/app/checkout/components/shipping-method-item'
 
 import SHIPPING_METHOD from '@/assets/data/shipping_method.json'
+import useCheckoutStore from '@/app/checkout/hooks/use-checkout-store'
 
 // ----------------------------------------------------------------------
 
 const ShippingMethod = () => {
-  const [shippingMethod, setShippingMethod] = useState<string>(
-    SHIPPING_METHOD[0].name
-  )
+  const { shipping, setShippingMethod } = useCheckoutStore((state) => state)
 
   const handleShippingMethodChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setShippingMethod(event.target.value)
+    const fee = e.target.getAttribute('data-fee')
+    setShippingMethod(Number(e.target.value), Number(fee))
   }
 
   return (
@@ -24,12 +24,12 @@ const ShippingMethod = () => {
       <Header3>Delivery method</Header3>
 
       <ul className='grid w-full gap-2 md:grid-cols-3'>
-        {SHIPPING_METHOD.map((shipping) => (
+        {SHIPPING_METHOD.map((shipp) => (
           <ShippingMethodItem
-            {...shipping}
-            key={`shipping-${shipping.id}`}
+            {...shipp}
+            key={`shipping-${shipp.id}`}
             onChange={handleShippingMethodChange}
-            shippingMethod={shippingMethod}
+            shippingMethodSelected={shipping.shippingMethod}
           />
         ))}
       </ul>

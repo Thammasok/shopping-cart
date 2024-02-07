@@ -13,7 +13,7 @@ type ShippingMethodItemProps = {
   condition: string
   price: number
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-  shippingMethod: string
+  shippingMethodSelected: number
 }
 
 const ShippingMethodItem = ({
@@ -23,7 +23,7 @@ const ShippingMethodItem = ({
   condition,
   price,
   onChange,
-  shippingMethod
+  shippingMethodSelected,
 }: ShippingMethodItemProps) => {
   return (
     <li>
@@ -31,10 +31,11 @@ const ShippingMethodItem = ({
         type='radio'
         id={`shipping-method-${id}`}
         name='shipping-method'
-        value={name}
+        value={id}
         className='hidden peer'
         onChange={onChange}
-        checked={shippingMethod === name}
+        data-fee={price}
+        checked={shippingMethodSelected === id}
         required
       />
       <label

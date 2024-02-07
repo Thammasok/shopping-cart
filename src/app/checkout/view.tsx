@@ -3,18 +3,18 @@
 import Discount from '@/app/checkout/components/discount'
 import OrderSummary from '@/app/checkout/components/order-summary'
 import OrderList from '@/app/checkout/components/order-list'
-import ShippingInfomation from '@/app/checkout/components/shipping-infomation'
+import ShippingInfomation from '@/app/checkout/components/shipping-infomation2'
 import ShippingMethod from '@/app/checkout/components/shipping-method'
 import PaymentMethod from '@/app/checkout/components/payment-method'
 import { redirect } from 'next/navigation'
 import Button from '@/components/button/button'
 import { useEffect } from 'react'
-import useCartStore from '@/app/cart/hooks/use-cart-store'
+import useCheckoutStore from '@/app/checkout/hooks/use-checkout-store'
 
 // ----------------------------------------------------------------------
 
 const CheckoutView = () => {
-  const { getProductListInCart } = useCartStore()
+  const { getProductListInCart } = useCheckoutStore()
 
   const submitPayOrder = () => {
     console.log('op')

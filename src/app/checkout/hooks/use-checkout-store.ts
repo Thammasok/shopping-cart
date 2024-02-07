@@ -6,26 +6,38 @@ import GetProductInCartService, {
 } from '@/services/cart/get-product-list'
 import { calculateTotalPrice } from '@/utils/total-price'
 import { produce } from 'immer'
+import SHIPPING_METHOD from '@/assets/data/shipping_method.json'
 
 // ---------------------------------------------------
 
 type PaymentCreditInformationType = {
-  cardName: string
-  cardNumber: string
-  expriesDate: string
-  cvv: number
+  name: string
+  number: string
+  expiry: string
+  cvv: string
+  issuer: string
+  focused: string
 }
 
 type ShippingInformationType = {
+  firstName: string
+  lastName: string
+  address: string
+  mobileNumber: string
+  provinceId: number
+  districtId: number
+  subDistrictId: number
+  provinceName: string
+  districtName: string
+  subDistrictName: string
+  zipCode: number
+  focused: string
+}
+
+type ShippingType = {
   shippingMethod: number
-  shippingAddress: string
-  shippingSubDistrict: string
-  shippingDistrict: string
-  shippingProvince: string
-  shippingZipCode: string
-  recipientFirstName: string
-  recipientLastName: string
-  recipientPhoneNumber: string
+  shippingFee: number
+  shippingInformation: ShippingInformationType
 }
 
 type PointType = {
@@ -41,11 +53,21 @@ type PaymentType = {
 
 type CheckoutStoreType = {
   totalPrice: number
+  netTotal: number
+  receivePoint: number
   cart: ProductDetailInCart[]
-  shippingInformation: ShippingInformationType
+  shipping: ShippingType
   point: PointType
   payment: PaymentType
   getProductListInCart: () => void
+  setPoint: (point: number) => void
+  setIsUsePoint: (isUsePoint: boolean) => void
+  setPaymentMethod: (paymentMethod: string) => void
+  setPaymentInformation: (
+    paymentCreditInformation: PaymentCreditInformationType
+  ) => void
+  setShippingMethod: (shippingMethod: number, shippingFee: number) => void
+  setShippingInformation: (shippingInformation: ShippingInformationType) => void
   // addToCartLocal: (product: ProductToCartProps) => void
 }
 
@@ -54,17 +76,26 @@ const useCheckoutStore = create<CheckoutStoreType>()(
     persist(
       (set, get) => ({
         totalPrice: 0,
+        netTotal: 0,
+        receivePoint: 0,
         cart: [],
-        shippingInformation: {
-          recipientFirstName: '',
-          recipientLastName: '',
-          recipientPhoneNumber: '',
-          shippingAddress: '',
-          shippingSubDistrict: '',
-          shippingDistrict: '',
-          shippingProvince: '',
-          shippingZipCode: '',
-          shippingMethod: 1
+        shipping: {
+          shippingMethod: SHIPPING_METHOD[0].id,
+          shippingFee: SHIPPING_METHOD[0].price,
+          shippingInformation: {
+            firstName: '',
+            lastName: '',
+            address: '',
+            mobileNumber: '',
+            provinceId: 0,
+            districtId: 0,
+            subDistrictId: 0,
+            provinceName: '',
+            districtName: '',
+            subDistrictName: '',
+            zipCode: 0,
+            focused: ''
+          }
         },
         point: {
           point: 0,
@@ -73,7 +104,14 @@ const useCheckoutStore = create<CheckoutStoreType>()(
         },
         payment: {
           paymentMethod: 'credit',
-          paymentCreditInformation: {},
+          paymentCreditInformation: {
+            number: '',
+            name: '',
+            expiry: '',
+            cvv: '',
+            issuer: '',
+            focused: ''
+          }
         },
         getProductListInCart: async () => {
           // Mock userId
@@ -87,23 +125,62 @@ const useCheckoutStore = create<CheckoutStoreType>()(
             produce((state) => {
               state.cart = productInCart
               state.totalPrice = total
+              state.netTotal = total
             })
           )
         },
-        setBurnPoint: (isUsePoint: boolean) => {
-          if (isUsePoint) {
-            set(
-              produce((state) => {
-                state.burnPoint = state.point
-              })
-            )
-          } else {
-            set(
-              produce((state) => {
-                state.burnPoint = 0
-              })
-            )
-          }
+        setPoint(point: number) {
+          set(
+            produce((state) => {
+              state.point.point = point
+            })
+          )
+        },
+        setIsUsePoint: (isUsePoint: boolean) => {
+          set(
+            produce((state) => {
+              state.point.isUsePoint = isUsePoint
+            })
+          )
+        },
+        setPaymentMethod: (paymentMethod: string) => {
+          set(
+            produce((state) => {
+              state.payment.paymentMethod = paymentMethod
+            })
+          )
+        },
+        setPaymentInformation: (
+          paymentCreditInformation: PaymentCreditInformationType
+        ) => {
+          set(
+            produce((state) => {
+              state.payment.paymentCreditInformation = paymentCreditInformation
+            })
+          )
+        },
+        setShippingMethod: (shippingMethod: number, shippingFee: number) => {
+          const newNetTotal = get().totalPrice + shippingFee
+
+          set(
+            produce((state) => {
+              state.netTotal = newNetTotal
+              state.shipping.shippingMethod = shippingMethod
+              state.shipping.shippingFee = shippingFee
+            })
+          )
+        },
+        setShippingInformation: (
+          shippingInformation: ShippingInformationType
+        ) => {
+          set(
+            produce((state) => {
+              state.shippingInformation = shippingInformation
+            })
+          )
+        },
+        updateSummary: () => {
+          
         }
       }),
       {
