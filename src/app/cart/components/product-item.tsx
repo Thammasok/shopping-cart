@@ -1,15 +1,15 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { converNumber, convertCurrency, isNumber } from '@/utils/format'
-import InputQuantity from '@/components/input-quantity'
 import RemoveItem from '@/app/cart/components/remove-item'
-import Text from '@/components/typography/text'
-import { ProductDetailInCart } from '@/services/cart/get-product-list'
-import config from '@/config'
-import Image from '@/components/image'
-import updateProductInCartService from '@/services/cart/update-product'
 import useCartStore from '@/app/cart/hooks/use-cart-store'
+import Image from '@/components/image'
+import InputQuantity from '@/components/input-quantity'
+import Text from '@/components/typography/text'
+import config from '@/config'
+import { ProductDetailInCart } from '@/services/cart/get-product-list'
+import updateProductInCartService from '@/services/cart/update-product'
+import { converNumber, convertCurrency, isNumber } from '@/utils/format'
+import { useEffect, useState } from 'react'
 
 // ----------------------------------------------------------------------
 
@@ -78,34 +78,34 @@ const ProductItem = ({
   }, [quantity])
 
   return (
-    <li className='flex py-6'>
-      <div className='h-32 w-32 flex-shrink-0 overflow-hidden rounded-md border border-gray-200'>
+    <li className="flex py-6">
+      <div className="h-32 w-32 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
         <Image
           src={`${config.imageUrl}/${product_image}`}
           alt={product_name}
           width={94}
           height={94}
-          className='h-full w-full object-contain object-center bg-white'
+          className="h-full w-full object-contain object-center bg-white"
         />
       </div>
 
-      <div className='ml-4 flex flex-1 flex-col'>
+      <div className="ml-4 flex flex-1 flex-col">
         <div>
-          <div className='flex justify-between text-base font-medium text-gray-900'>
+          <div className="flex justify-between text-base font-medium text-gray-900">
             <h3>
               <a href={`/product/${product_id}`}>{product_name}</a>
             </h3>
-            <p className='ml-4'>{convertCurrency(product_price)}</p>
+            <p className="ml-4">{convertCurrency(product_price)}</p>
           </div>
-          <Text className='mt-1 text-sm text-gray-500'>
+          <Text className="mt-1 text-sm text-gray-500">
             {`Stock ${converNumber(stock)} items`}
           </Text>
         </div>
 
-        <div className='flex flex-1 items-end justify-between text-sm mt-4'>
+        <div className="flex flex-1 items-end justify-between text-sm mt-4">
           <InputQuantity
-            id='quantity'
-            placeholder='999'
+            id="quantity"
+            placeholder="999"
             increment={incrementQuantity}
             decrement={decrementQuantity}
             onChange={handleQuantityChange}

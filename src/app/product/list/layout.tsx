@@ -1,6 +1,6 @@
 'use client'
 
-import CommonLayout from "@/layouts/common"
+import CommonLayout from '@/layouts/common'
 
 // ----------------------------------------------------------------------
 

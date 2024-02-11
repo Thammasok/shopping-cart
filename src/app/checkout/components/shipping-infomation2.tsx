@@ -1,15 +1,14 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
 import ShippingDropdownList from '@/app/checkout/components/shipping-dropdown-list'
 import InputField from '@/components/input-field'
 import Header3 from '@/components/typography/header3'
+import React, { useState } from 'react'
 
-import PROVINCE_LIST from '@/assets/data/api_province.json'
-import DISTRICT_LIST from '@/assets/data/api_district.json'
-import SUB_DISTRICT_LIST from '@/assets/data/api_sub_district.json'
-import { isNumber } from '@/utils/format'
 import useCheckoutStore from '@/app/checkout/hooks/use-checkout-store'
+import DISTRICT_LIST from '@/assets/data/api_district.json'
+import PROVINCE_LIST from '@/assets/data/api_province.json'
+import SUB_DISTRICT_LIST from '@/assets/data/api_sub_district.json'
 
 // ----------------------------------------------------------------------
 
@@ -168,27 +167,27 @@ const ShippingInfomation = () => {
   }
 
   return (
-    <div className='mb-6 border-b border-gray-200 pb-6'>
+    <div className="mb-6 border-b border-gray-200 pb-6">
       <Header3>Shipping information</Header3>
 
-      <div className='grid gap-6 mb-2 md:grid-cols-2'>
+      <div className="grid gap-6 mb-2 md:grid-cols-2">
         <InputField
-          id='first-name'
-          label='First name'
-          type='text'
-          name='firstName'
-          placeholder='first name'
+          id="first-name"
+          label="First name"
+          type="text"
+          name="firstName"
+          placeholder="first name"
           required
           onChange={handleAddressInputChange}
           onFocus={handleInputFocus}
         />
 
         <InputField
-          id='last-name'
-          label='Last name'
-          type='text'
-          name='lastName'
-          placeholder='last name'
+          id="last-name"
+          label="Last name"
+          type="text"
+          name="lastName"
+          placeholder="last name"
           required
           onChange={handleAddressInputChange}
           onFocus={handleInputFocus}
@@ -196,11 +195,11 @@ const ShippingInfomation = () => {
       </div>
 
       <InputField
-        id='address'
-        label='Address (Building, Street, etc.)'
-        type='text'
-        name='address'
-        placeholder='address'
+        id="address"
+        label="Address (Building, Street, etc.)"
+        type="text"
+        name="address"
+        placeholder="address"
         required
         maxLength={150}
         onChange={handleAddressInputChange}
@@ -208,32 +207,32 @@ const ShippingInfomation = () => {
       />
 
       <ShippingDropdownList
-        label='Province: '
+        label="Province: "
         list={provinceList}
-        name='province'
+        name="province"
         setSelected={handleAddressSelectChange}
       />
 
       <ShippingDropdownList
-        label='District: '
+        label="District: "
         list={districtList}
-        name='district'
+        name="district"
         setSelected={handleAddressSelectChange}
       />
 
       <ShippingDropdownList
-        label='Sub-district: '
+        label="Sub-district: "
         list={subDistrictList}
-        name='subDistrict'
+        name="subDistrict"
         setSelected={handleAddressSelectChange}
       />
 
       <InputField
-        id='zipcode'
-        label='Zipcode'
-        type='text'
-        name='zipCode'
-        placeholder='zipcode'
+        id="zipcode"
+        label="Zipcode"
+        type="text"
+        name="zipCode"
+        placeholder="zipcode"
         maxLength={5}
         value={addressInfo.zipCode ? addressInfo.zipCode.toString() : ''}
         readOnly
@@ -241,11 +240,11 @@ const ShippingInfomation = () => {
       />
 
       <InputField
-        id='mobile'
-        label='Mobile number (For Contact)'
-        type='tel'
-        name='mobileNumber'
-        placeholder='0923456789'
+        id="mobile"
+        label="Mobile number (For Contact)"
+        type="tel"
+        name="mobileNumber"
+        placeholder="0923456789"
         maxLength={10}
         onChange={handleAddressInputChange}
         onFocus={handleInputFocus}

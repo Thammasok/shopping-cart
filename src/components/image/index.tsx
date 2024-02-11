@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import NextImage, { ImageProps } from 'next/image'
 import config from '@/config'
+import NextImage, { ImageProps } from 'next/image'
+import { useState } from 'react'
 
 // ----------------------------------------------------------------------
 

@@ -13,14 +13,14 @@ const InputField = (props: InputFieldProps) => {
       {props.label ? (
         <label
           htmlFor={props.id}
-          className='block mb-2 text-sm font-medium text-gray-900'
+          className="block mb-2 text-sm font-medium text-gray-900"
         >
           {props.label}
         </label>
       ) : null}
 
       <input
-        className='bg-white text-sm w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors'
+        className="bg-white text-sm w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
         {...props}
       />
     </div>

@@ -3,25 +3,24 @@
 import Button from '@/components/button/button'
 import InputField from '@/components/input-field'
 import Tag from '@/components/tag'
-import { XMarkIcon } from '@heroicons/react/24/outline'
 
 // ----------------------------------------------------------------------
 
 const DiscountForm = () => {
   return (
-    <div className='border-b pb-5'>
-      <div className='-mx-2 flex items-end justify-between'>
-        <div className='flex-grow px-2 lg:max-w-sm'>
-          <InputField id='discount' type='text' placeholder='XXXXXX' />
+    <div className="border-b pb-5">
+      <div className="-mx-2 flex items-end justify-between">
+        <div className="flex-grow px-2 lg:max-w-sm">
+          <InputField id="discount" type="text" placeholder="XXXXXX" />
         </div>
-        <div className='px-2'>
-          <Button size='sm'>APPLY</Button>
+        <div className="px-2">
+          <Button size="sm">APPLY</Button>
         </div>
       </div>
 
-      <div className='mt-2'>
-        <Tag name='SAVE20' onRemove={() => {}} />
-        <Tag name='FREESHIP' onRemove={() => {}} />
+      <div className="mt-2">
+        <Tag name="SAVE20" onRemove={() => {}} />
+        <Tag name="FREESHIP" onRemove={() => {}} />
       </div>
     </div>
   )

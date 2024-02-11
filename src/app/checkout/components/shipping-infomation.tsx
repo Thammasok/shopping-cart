@@ -1,12 +1,12 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
 import ShippingDropdownList from '@/app/checkout/components/shipping-dropdown-list'
 import InputField from '@/components/input-field'
 import Header3 from '@/components/typography/header3'
+import { useState } from 'react'
 
-import PROVINCE_LIST from '@/assets/data/api_province.json'
 import DISTRICT_LIST from '@/assets/data/api_district.json'
+import PROVINCE_LIST from '@/assets/data/api_province.json'
 import SUB_DISTRICT_LIST from '@/assets/data/api_sub_district.json'
 import { isNumber } from '@/utils/format'
 
@@ -121,65 +121,65 @@ const ShippingInfomation = () => {
   }
 
   return (
-    <div className='mb-6 border-b border-gray-200 pb-6'>
+    <div className="mb-6 border-b border-gray-200 pb-6">
       <Header3>Shipping information</Header3>
 
-      <div className='grid gap-6 mb-2 md:grid-cols-2'>
+      <div className="grid gap-6 mb-2 md:grid-cols-2">
         <InputField
-          id='first-name'
-          label='First name'
-          type='text'
-          placeholder='first name'
+          id="first-name"
+          label="First name"
+          type="text"
+          placeholder="first name"
           required
           onChange={handleFirstNameChange}
         />
 
         <InputField
-          id='last-name'
-          label='Last name'
-          type='text'
-          placeholder='last name'
+          id="last-name"
+          label="Last name"
+          type="text"
+          placeholder="last name"
           required
           onChange={handleLastNameChange}
         />
       </div>
 
       <InputField
-        id='address'
-        label='Address (Building, Street, etc.)'
-        type='text'
-        placeholder='address'
+        id="address"
+        label="Address (Building, Street, etc.)"
+        type="text"
+        placeholder="address"
         required
         maxLength={150}
         onChange={handleAddressChange}
       />
 
       <ShippingDropdownList
-        label='Province: '
+        label="Province: "
         list={provinceList}
         selected={provinceSelected}
         setSelected={handleProvinceSelect}
       />
 
       <ShippingDropdownList
-        label='District: '
+        label="District: "
         list={districtList}
         selected={districtSelected}
         setSelected={handleDistrictSelect}
       />
 
       <ShippingDropdownList
-        label='Sub-district: '
+        label="Sub-district: "
         list={subDistrictList}
         selected={subDistrictSelected}
         setSelected={handleSubDistrictSelect}
       />
 
       <InputField
-        id='zipcode'
-        label='Zipcode'
-        type='text'
-        placeholder='zipcode'
+        id="zipcode"
+        label="Zipcode"
+        type="text"
+        placeholder="zipcode"
         maxLength={5}
         value={zipCode ? zipCode.toString() : ''}
         readOnly
@@ -187,10 +187,10 @@ const ShippingInfomation = () => {
       />
 
       <InputField
-        id='mobile'
-        label='Mobile number (For Contact)'
-        type='tel'
-        placeholder='0923456789'
+        id="mobile"
+        label="Mobile number (For Contact)"
+        type="tel"
+        placeholder="0923456789"
         maxLength={10}
         onChange={handleMobileNumberChange}
         required

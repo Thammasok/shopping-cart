@@ -1,10 +1,10 @@
-import { create } from 'zustand'
-import { devtools, persist } from 'zustand/middleware'
-import type {} from '@redux-devtools/extension' // required for devtools typing
 import GetProductInCartService, {
   ProductDetailInCart
 } from '@/services/cart/get-product-list'
 import { calculateTotalPrice } from '@/utils/total-price'
+import type {} from '@redux-devtools/extension' // required for devtools typing
+import { create } from 'zustand'
+import { devtools, persist } from 'zustand/middleware'
 
 // ---------------------------------------------------
 

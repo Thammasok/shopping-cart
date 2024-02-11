@@ -1,5 +1,6 @@
 'use client'
 
+import useCheckoutStore from '@/app/checkout/hooks/use-checkout-store'
 import MastercardIcon from '@/components/icons/mastercard'
 import VisaIcon from '@/components/icons/visa'
 import Image from '@/components/image'
@@ -11,7 +12,6 @@ import {
   formatExpirationDate
 } from '@/utils/credit-cart-format'
 import { useState } from 'react'
-import useCheckoutStore from '@/app/checkout/hooks/use-checkout-store'
 
 // ----------------------------------------------------------------------
 
@@ -87,22 +87,22 @@ const PaymentMethod = () => {
   }
 
   return (
-    <div className='mb-6 border-b border-gray-200 pb-2'>
+    <div className="mb-6 border-b border-gray-200 pb-2">
       <Header3>Payment</Header3>
 
-      <div className='w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light mb-6'>
+      <div className="w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light mb-6">
         {/* Credit/Debit Card */}
-        <div className='w-full p-3 border-b border-gray-200'>
+        <div className="w-full p-3 border-b border-gray-200">
           <label
-            htmlFor='payment-credit-card'
-            className='flex items-center cursor-pointer text-sm font-bold text-gray-900'
+            htmlFor="payment-credit-card"
+            className="flex items-center cursor-pointer text-sm font-bold text-gray-900"
           >
             <input
-              id='payment-credit-card'
-              type='radio'
-              name='payment-method'
-              value='credit-card'
-              className='form-radio h-5 w-5 text-indigo-500 mr-2'
+              id="payment-credit-card"
+              type="radio"
+              name="payment-method"
+              value="credit-card"
+              className="form-radio h-5 w-5 text-indigo-500 mr-2"
               onChange={handlePaymentMethodChange}
               checked={paymentMethod === 'credit-card'}
             />
@@ -111,29 +111,29 @@ const PaymentMethod = () => {
 
           <div className={paymentMethod === 'credit-card' ? 'mt-5' : 'hidden'}>
             <InputField
-              type='text'
-              label='Name on card'
-              name='fullname'
-              placeholder='John Smith'
+              type="text"
+              label="Name on card"
+              name="fullname"
+              placeholder="John Smith"
               onChange={handleCardNumberChange}
               onFocus={handleInputFocus}
             />
 
-            <div className='mb-3 -mx-2 flex items-center'>
-              <div className='px-2 w-3/4'>
+            <div className="mb-3 -mx-2 flex items-center">
+              <div className="px-2 w-3/4">
                 <InputField
-                  type='text'
-                  label='Card number'
-                  name='number'
-                  placeholder='0000 0000 0000 0000'
-                  pattern='[\d| ]{16,22}'
+                  type="text"
+                  label="Card number"
+                  name="number"
+                  placeholder="0000 0000 0000 0000"
+                  pattern="[\d| ]{16,22}"
                   maxLength={19}
                   onChange={handleCardNumberChange}
                   onFocus={handleInputFocus}
                 />
               </div>
-              <div className='px-2 w-1/4'>
-                <div className='flex items-center gap-2 mt-5'>
+              <div className="px-2 w-1/4">
+                <div className="flex items-center gap-2 mt-5">
                   <VisaIcon
                     width={48}
                     height={32}
@@ -156,23 +156,23 @@ const PaymentMethod = () => {
               </div>
             </div>
 
-            <div className='mb-3 -mx-2 flex items-end'>
-              <div className='px-2 w-1/3'>
+            <div className="mb-3 -mx-2 flex items-end">
+              <div className="px-2 w-1/3">
                 <InputField
-                  type='text'
-                  label='Expiration date'
-                  name='expiry'
-                  placeholder='00/00'
+                  type="text"
+                  label="Expiration date"
+                  name="expiry"
+                  placeholder="00/00"
                   onChange={handleCardNumberChange}
                   onFocus={handleInputFocus}
                 />
               </div>
-              <div className='px-2 w-1/3'>
+              <div className="px-2 w-1/3">
                 <InputField
-                  type='text'
-                  label='Security code'
-                  name='cvv'
-                  placeholder='000'
+                  type="text"
+                  label="Security code"
+                  name="cvv"
+                  placeholder="000"
                   onChange={handleCardNumberChange}
                   onFocus={handleInputFocus}
                 />
@@ -183,17 +183,17 @@ const PaymentMethod = () => {
 
         {/* Line Pay */}
         {/* Not use for now (if you want to use it: remove disabled attribute on input) */}
-        <div className='w-full p-3'>
+        <div className="w-full p-3">
           <label
-            htmlFor='payment-linepay'
-            className='flex items-center cursor-pointer text-sm font-bold text-gray-900'
+            htmlFor="payment-linepay"
+            className="flex items-center cursor-pointer text-sm font-bold text-gray-900"
           >
             <input
-              id='payment-linepay'
-              type='radio'
-              name='payment-method'
-              value='linepay'
-              className='form-radio h-5 w-5 text-indigo-500 mr-2'
+              id="payment-linepay"
+              type="radio"
+              name="payment-method"
+              value="linepay"
+              className="form-radio h-5 w-5 text-indigo-500 mr-2"
               onChange={handlePaymentMethodChange}
               checked={paymentMethod === 'linepay'}
               disabled
@@ -202,10 +202,10 @@ const PaymentMethod = () => {
           </label>
           <div className={paymentMethod === 'linepay' ? 'mt-2' : 'hidden'}>
             <Image
-              src='/qr-code-line-pay.png'
+              src="/qr-code-line-pay.png"
               width={290}
               height={300}
-              alt='qr code line pay'
+              alt="qr code line pay"
             />
           </div>
         </div>

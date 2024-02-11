@@ -11,9 +11,9 @@ type ProductListProps = {
 
 const ProductList = ({ list }: ProductListProps) => {
   return (
-    <div className='mt-8'>
-      <div className='flow-root'>
-        <ul role='list' className='-my-6 divide-y divide-gray-200'>
+    <div className="mt-8">
+      <div className="flow-root">
+        <ul role="list" className="-my-6 divide-y divide-gray-200">
           {list.map((product) => (
             <ProductItem
               key={`product-item-${product.id}`}

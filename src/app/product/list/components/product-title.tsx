@@ -9,7 +9,7 @@ type ProductTitleProps = {
 }
 
 const ProductTitle = ({ title }: ProductTitleProps) => {
-  return <Header2 className='text-gray-600'>{title}</Header2>
+  return <Header2 className="text-gray-600">{title}</Header2>
 }
 
 export default ProductTitle

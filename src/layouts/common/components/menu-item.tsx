@@ -9,7 +9,7 @@ type MenuItemProps = {
 
 const MenuItem = ({ link, name }: MenuItemProps) => {
   return (
-    <a href={link} className='text-sm font-semibold leading-6 text-gray-900'>
+    <a href={link} className="text-sm font-semibold leading-6 text-gray-900">
       {name}
     </a>
   )

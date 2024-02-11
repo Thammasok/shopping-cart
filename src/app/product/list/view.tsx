@@ -1,13 +1,13 @@
 'use client'
 
-import ProductTitle from '@/app/product/list/components/product-title'
 import ProductList from '@/app/product/list/components/product-list'
+import ProductNotFound from '@/app/product/list/components/product-not-found'
+import ProductTitle from '@/app/product/list/components/product-title'
 import SearchForm from '@/app/product/list/components/search-form'
-import { useEffect, useState } from 'react'
 import getProductListService, {
   GetProductListServiceResponse
 } from '@/services/product-lists'
-import ProductNotFound from '@/app/product/list/components/product-not-found'
+import { useEffect, useState } from 'react'
 
 // ----------------------------------------------------------------------
 
@@ -40,15 +40,15 @@ const ProductView = () => {
   }, [])
 
   return (
-    <div className='bg-white'>
-      <div className='min-h-[calc(100vh-88px)] mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8'>
+    <div className="bg-white">
+      <div className="min-h-[calc(100vh-88px)] mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">
         <SearchForm
           keyword={keyword}
           onChangeSearchKeyword={onChangeSearchKeyword}
           onSubmitSearch={onSubmitSearch}
         />
 
-        <ProductTitle title='All Products' />
+        <ProductTitle title="All Products" />
 
         {products && products.total > 0 ? (
           <ProductList products={products} />

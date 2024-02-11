@@ -13,11 +13,11 @@ const Cart = ({ setShoppingCartOpen }: HeaderProps) => {
 
   return (
     <button
-      type='button'
+      type="button"
       onClick={() => setShoppingCartOpen(true)}
-      className='text-sm font-semibold leading-6 text-gray-900'
+      className="text-sm font-semibold leading-6 text-gray-900"
     >
-      <ShoppingCartIcon className='h-6 w-6 absolute' aria-hidden='true' />
+      <ShoppingCartIcon className="h-6 w-6 absolute" aria-hidden="true" />
 
       <Badge total={totalProduct} />
     </button>

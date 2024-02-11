@@ -1,7 +1,7 @@
 'use client'
 
-import { TrashIcon } from '@heroicons/react/24/outline'
 import ButtonIcon from '@/components/button/button-icon'
+import { TrashIcon } from '@heroicons/react/24/outline'
 
 // ----------------------------------------------------------------------
 
@@ -11,11 +11,11 @@ type RemoveItemProps = {
 
 const RemoveItem = ({ onClick }: RemoveItemProps) => {
   return (
-    <div className='flex pb-3'>
+    <div className="flex pb-3">
       <ButtonIcon
-        type='button'
+        type="button"
         onClick={onClick}
-        className='font-medium text-red-600 hover:text-red-500'
+        className="font-medium text-red-600 hover:text-red-500"
       >
         <TrashIcon width={24} height={24} />
       </ButtonIcon>

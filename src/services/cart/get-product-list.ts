@@ -1,6 +1,4 @@
-import axiosShoppingMallApi from '@/utils/axios'
-
-import { mockAddToCartResponse, mockCartListResponse } from '@/mock'
+import { mockCartListResponse } from '@/mock'
 
 // ------------------------------------------------
 
@@ -18,7 +16,9 @@ export type ProductDetailInCart = {
 
 export type GetProductInCartServiceResponse = ProductDetailInCart[]
 
-const GetProductInCartService = async (userId: number): Promise<GetProductInCartServiceResponse> => {
+const GetProductInCartService = async (
+  userId: number
+): Promise<GetProductInCartServiceResponse> => {
   // const queryString =
   //     '?' +
   //     new URLSearchParams({

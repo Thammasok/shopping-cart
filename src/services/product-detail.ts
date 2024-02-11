@@ -1,5 +1,3 @@
-import axiosShoppingMallApi from '@/utils/axios'
-
 import { mockProductDetailResponse } from '@/mock'
 
 // ------------------------------------------------

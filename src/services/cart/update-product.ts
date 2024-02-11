@@ -1,6 +1,4 @@
-import axiosShoppingMallApi from '@/utils/axios'
-
-import { mockAddToCartResponse, mockUpdateCartResponse } from '@/mock'
+import { mockUpdateCartResponse } from '@/mock'
 
 // ------------------------------------------------
 

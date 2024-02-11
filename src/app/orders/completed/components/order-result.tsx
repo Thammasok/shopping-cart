@@ -8,24 +8,24 @@ import Text from '@/components/typography/text'
 
 const OrderResult = () => {
   return (
-    <div className='text-gray-800 border-b border-gray-200 mb-4'>
-      <Header3 className='text-green-600'>Payment successful</Header3>
-      <Header1 className='text-6xl font-extrabold my-5'>
+    <div className="text-gray-800 border-b border-gray-200 mb-4">
+      <Header3 className="text-green-600">Payment successful</Header3>
+      <Header1 className="text-6xl font-extrabold my-5">
         Thank you for your order
       </Header1>
 
-      <Text size='md' className='text-gray-600 my-10'>
+      <Text size="md" className="text-gray-600 my-10">
         {'Date and time of payment 01/03/2020 13:30:00 Order number '}
         <a
-          className='text-sm font-medium text-indigo-600'
-          href='/orders/102323'
+          className="text-sm font-medium text-indigo-600"
+          href="/orders/102323"
         >
           102323
         </a>
         {' You can track the product via Kerry with number '}
         <a
-          className='text-sm font-medium text-indigo-600'
-          href='#?tracking_id=51547878755545848512'
+          className="text-sm font-medium text-indigo-600"
+          href="#?tracking_id=51547878755545848512"
         >
           51547878755545848512
         </a>
