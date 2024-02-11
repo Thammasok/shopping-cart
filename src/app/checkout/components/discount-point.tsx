@@ -1,6 +1,6 @@
 'use client'
 
-import useCheckoutStore from '@/app/checkout/hooks/use-checkout-store'
+import useOrderStore from '@/hooks/use-order-store'
 import Text from '@/components/typography/text'
 import getPointService from '@/services/point'
 import { converNumber } from '@/utils/format'
@@ -9,7 +9,7 @@ import { useEffect } from 'react'
 // ----------------------------------------------------------------------
 
 const DiscountPoint = () => {
-  const { point, setPoint, setIsUsePoint } = useCheckoutStore((state) => state)
+  const { point, setPoint, setIsUsePoint } = useOrderStore((state) => state)
 
   const handleUsePointChange = (e: { target: { checked: boolean } }) => {
     setIsUsePoint(e.target.checked)

@@ -1,7 +1,7 @@
 'use client'
 
 import RemoveItem from '@/app/cart/components/remove-item'
-import useCartStore from '@/app/cart/hooks/use-cart-store'
+import useOrderStore from '@/hooks/use-order-store'
 import Image from '@/components/image'
 import InputQuantity from '@/components/input-quantity'
 import Text from '@/components/typography/text'
@@ -29,7 +29,7 @@ const ProductItem = ({
   isHiddenLable = false
 }: ProductItemProps) => {
   const [newQuantity, setNewQuantity] = useState(1)
-  const { getProductListInCart } = useCartStore()
+  const { getProductListInCart } = useOrderStore()
 
   const handleQuantityChange = (e: { target: { value: string } }) => {
     if (isNumber(e.target.value)) {

@@ -1,9 +1,8 @@
 import SHIPPING_METHOD from '@/assets/data/shipping_method.json'
-import config from '@/config'
 import GetProductInCartService, {
   ProductDetailInCart
 } from '@/services/cart/get-product-list'
-import { calculateTotalPrice } from '@/utils/total-price'
+import * as calculate from '@/utils/total-price'
 import type {} from '@redux-devtools/extension' // required for devtools typing
 import { produce } from 'immer'
 import { create } from 'zustand'
@@ -49,14 +48,15 @@ type PointType = {
 
 type PaymentType = {
   paymentMethod: string
-  paymentCreditInformation: PaymentCreditInformationType | {}
+  paymentCreditInformation: PaymentCreditInformationType
 }
 
-type CheckoutStoreType = {
-  totalPrice: number
-  netTotal: number
-  receivePoint: number
+type OrderStoreType = {
   cart: ProductDetailInCart[]
+  totalProduct: number
+  subTotal: number
+  totalPayment: number
+  receivePoint: number
   shipping: ShippingType
   point: PointType
   payment: PaymentType
@@ -70,17 +70,17 @@ type CheckoutStoreType = {
   setShippingMethod: (shippingMethod: number, shippingFee: number) => void
   setShippingInformation: (shippingInformation: ShippingInformationType) => void
   updateSummary: () => void
-  // addToCartLocal: (product: ProductToCartProps) => void
 }
 
-const useCheckoutStore = create<CheckoutStoreType>()(
+const useOrderStore = create<OrderStoreType>()(
   devtools(
     persist(
       (set, get) => ({
-        totalPrice: 0,
-        netTotal: 0,
-        receivePoint: 0,
         cart: [],
+        totalProduct: 0,
+        subTotal: 0,
+        totalPayment: 0,
+        receivePoint: 0,
         shipping: {
           shippingMethod: SHIPPING_METHOD[0].id,
           shippingFee: SHIPPING_METHOD[0].price,
@@ -121,13 +121,14 @@ const useCheckoutStore = create<CheckoutStoreType>()(
 
           const productInCart = await GetProductInCartService(userId)
           const price = productInCart?.map((item) => item.product_price)
-          const total = calculateTotalPrice(price)
+          const total = calculate.subTotal(price)
 
           set(
             produce((state) => {
+              state.totalProduct = productInCart.length
               state.cart = productInCart
-              state.totalPrice = total
-              state.netTotal = total
+              state.subTotal = total
+              state.totalPayment = total
             })
           )
 
@@ -166,77 +167,64 @@ const useCheckoutStore = create<CheckoutStoreType>()(
           )
         },
         setShippingMethod: (shippingMethod: number, shippingFee: number) => {
-          const newNetTotal = get().totalPrice + shippingFee
+          const newTotalPayment = get().subTotal + shippingFee
 
           set(
             produce((state) => {
-              state.netTotal = newNetTotal
+              state.totalPayment = newTotalPayment
               state.shipping.shippingMethod = shippingMethod
               state.shipping.shippingFee = shippingFee
             })
           )
+
+          get().updateSummary()
         },
         setShippingInformation: (
           shippingInformation: ShippingInformationType
         ) => {
           set(
             produce((state) => {
-              state.shippingInformation = shippingInformation
+              state.shipping.shippingInformation = shippingInformation
             })
           )
         },
-        updateSummary: () => {
+        updateSummary: async () => {
           const isUsePoint = get().point.isUsePoint
           const point = get().point.point
 
-          const totalPrice = get().totalPrice
+          const subTotal = get().subTotal
           const shippingFee = get().shipping.shippingFee
 
-          let burnPoint = 0
-          let netTotal = 0
-          
           // Calculate Point
-          if (isUsePoint) {
-            if (point <= totalPrice) {
-              burnPoint = point
-            } else {
-              // ปัดเศษขึ้น
-              burnPoint = Math.ceil(totalPrice)
-            }
-          } else {
-            burnPoint = 0
-          }
+          const pointsUsed = isUsePoint
+            ? calculate.pointBurn(point, subTotal)
+            : 0
 
-          // netTotal
-          if (isUsePoint) {
-            if (totalPrice <= burnPoint) {
-              netTotal = shippingFee
-            } else {
-              netTotal = (totalPrice - burnPoint) + shippingFee
-            }
-          } else {
-            netTotal = totalPrice + shippingFee
-          }
+          // Total Payment
+          const totalPayment = calculate.totalPayment(
+            isUsePoint,
+            pointsUsed,
+            subTotal,
+            shippingFee
+          )
 
-          // pointReceive
-          // ปัดเศษลง
-          const pointReceive = Math.floor(netTotal / config.pointRate)
+          // Point Receive
+          const receivePoint = calculate.receiptPoint(totalPayment)
 
           set(
             produce((state) => {
-              state.netTotal = netTotal
-              state.receivePoint = pointReceive
-              // state.point.point = pointBalance
-              state.point.burnPoint = burnPoint
+              state.totalPayment = totalPayment
+              state.receivePoint = receivePoint
+              state.point.burnPoint = pointsUsed
             })
           )
         }
       }),
       {
-        name: 'checkout-storage'
+        name: 'order-storage'
       }
     )
   )
 )
 
-export default useCheckoutStore
+export default useOrderStore

@@ -4,7 +4,7 @@ import ButtonContiueShopping from '@/app/cart/components/button-continue'
 import ProductList from '@/app/cart/components/product-list'
 import ShoppingHeader from '@/app/cart/components/shopping-header'
 import SubTotal from '@/app/cart/components/sub-total'
-import useCartStore from '@/app/cart/hooks/use-cart-store'
+import useOrderStore from '@/hooks/use-order-store'
 import ButtonLink from '@/components/button/button-link'
 import Text from '@/components/typography/text'
 import { Dialog, Transition } from '@headlessui/react'
@@ -21,7 +21,7 @@ const ShoppingCartView = ({
   openShoppingCart,
   setOpenShoppingCart
 }: ShoppingCartViewProps) => {
-  const { cart, totalPrice, getProductListInCart } = useCartStore()
+  const { cart, subTotal, getProductListInCart } = useOrderStore()
 
   useEffect(() => {
     getProductListInCart()
@@ -65,7 +65,7 @@ const ShoppingCartView = ({
                     </div>
 
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                      <SubTotal total={totalPrice} />
+                      <SubTotal total={subTotal} />
 
                       <Text size="sm" className="mt-0.5 text-gray-500">
                         Shipping and taxes calculated at checkout.

@@ -11,6 +11,7 @@ type SummaryTextProps = {
   format?: string
   size?: string
   className?: string
+  textBeforeValue?: string
   unit?: string
 }
 
@@ -20,6 +21,7 @@ const SummaryText = ({
   format = 'currency',
   size = 'md',
   className = 'font-semibold',
+  textBeforeValue = '',
   unit = ''
 }: SummaryTextProps) => {
   return (
@@ -31,8 +33,9 @@ const SummaryText = ({
       </div>
       <div className="pl-3">
         <Text className={className}>
+          {value === 0 ? '' : textBeforeValue}
           {format === 'number' ? converNumber(value) : convertCurrency(value)}
-          {unit && <span className="ml-1">{unit}</span>}
+          {unit ? ` ${unit}` : ''}
         </Text>
       </div>
     </div>

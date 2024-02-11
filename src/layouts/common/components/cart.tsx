@@ -2,14 +2,14 @@
 
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
 
-import useCartStore from '@/app/cart/hooks/use-cart-store'
 import Badge from '@/components/badge'
 import { HeaderProps } from '@/layouts/common/header'
+import useOrderStore from '@/hooks/use-order-store'
 
 // ---------------------------------------------------
 
 const Cart = ({ setShoppingCartOpen }: HeaderProps) => {
-  const totalProduct = useCartStore((state) => state.totalProduct)
+  const totalProduct = useOrderStore((state) => state.totalProduct)
 
   return (
     <button

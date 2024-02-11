@@ -1,6 +1,6 @@
 'use client'
 
-import useCheckoutStore from '@/app/checkout/hooks/use-checkout-store'
+import useOrderStore from '@/hooks/use-order-store'
 import MastercardIcon from '@/components/icons/mastercard'
 import VisaIcon from '@/components/icons/visa'
 import Image from '@/components/image'
@@ -41,7 +41,7 @@ const PaymentMethod = () => {
     focused: ''
   })
 
-  const { payment, setPaymentInformation } = useCheckoutStore((state) => state)
+  const { setPaymentInformation } = useOrderStore((state) => state)
 
   const handlePaymentMethodChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -126,7 +126,7 @@ const PaymentMethod = () => {
                   label="Card number"
                   name="number"
                   placeholder="0000 0000 0000 0000"
-                  pattern="[\d| ]{16,22}"
+                  pattern="[0-9\s]{16,22}"
                   maxLength={19}
                   onChange={handleCardNumberChange}
                   onFocus={handleInputFocus}

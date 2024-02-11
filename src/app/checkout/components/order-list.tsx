@@ -1,13 +1,13 @@
 'use client'
 
 import ProductItem from '@/app/cart/components/product-item'
-import useCartStore from '@/app/cart/hooks/use-cart-store'
 import Header3 from '@/components/typography/header3'
+import useOrderStore from '@/hooks/use-order-store'
 
 // ----------------------------------------------------------------------
 
 const OrderList = () => {
-  const { cart } = useCartStore()
+  const { cart } = useOrderStore()
 
   return (
     <>

@@ -3,13 +3,13 @@
 import ShippingMethodItem from '@/app/checkout/components/shipping-method-item'
 import Header3 from '@/components/typography/header3'
 
-import useCheckoutStore from '@/app/checkout/hooks/use-checkout-store'
+import useOrderStore from '@/hooks/use-order-store'
 import SHIPPING_METHOD from '@/assets/data/shipping_method.json'
 
 // ----------------------------------------------------------------------
 
 const ShippingMethod = () => {
-  const { shipping, setShippingMethod } = useCheckoutStore((state) => state)
+  const { shipping, setShippingMethod } = useOrderStore((state) => state)
 
   const handleShippingMethodChange = (
     e: React.ChangeEvent<HTMLInputElement>

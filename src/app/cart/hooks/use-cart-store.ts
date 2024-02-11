@@ -1,7 +1,7 @@
 import GetProductInCartService, {
   ProductDetailInCart
 } from '@/services/cart/get-product-list'
-import { calculateTotalPrice } from '@/utils/total-price'
+import * as calculate from '@/utils/total-price'
 import type {} from '@redux-devtools/extension' // required for devtools typing
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
@@ -16,7 +16,7 @@ export type ProductToCartProps = {
 type CartStoreType = {
   cart: ProductDetailInCart[]
   totalProduct: number
-  totalPrice: number
+  subTotal: number
   getProductListInCart: () => void
   // addToCartLocal: (product: ProductToCartProps) => void
 }
@@ -27,19 +27,19 @@ const useCartStore = create<CartStoreType>()(
       (set, get) => ({
         cart: [],
         totalProduct: 0,
-        totalPrice: 0,
+        subTotal: 0,
         getProductListInCart: async () => {
           // Mock userId
           const userId = 1
 
           const productInCart = await GetProductInCartService(userId)
           const price = productInCart?.map((item) => item.product_price)
-          const total = calculateTotalPrice(price)
+          const total = calculate.subTotal(price)
 
           set({
             cart: productInCart,
             totalProduct: productInCart.length,
-            totalPrice: total
+            subTotal: total
           })
         }
         // addToCartLocal: (product: ProductToCartProps) => {

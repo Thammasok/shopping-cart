@@ -5,7 +5,7 @@ import InputField from '@/components/input-field'
 import Header3 from '@/components/typography/header3'
 import React, { useState } from 'react'
 
-import useCheckoutStore from '@/app/checkout/hooks/use-checkout-store'
+import useOrderStore from '@/hooks/use-order-store'
 import DISTRICT_LIST from '@/assets/data/api_district.json'
 import PROVINCE_LIST from '@/assets/data/api_province.json'
 import SUB_DISTRICT_LIST from '@/assets/data/api_sub_district.json'
@@ -44,7 +44,7 @@ export type SubDistrictType = {
 }
 
 const ShippingInfomation = () => {
-  const { setShippingInformation } = useCheckoutStore((state) => state)
+  const { setShippingInformation } = useOrderStore((state) => state)
 
   const [provinceList] = useState<ProvinceType[]>(PROVINCE_LIST)
   const [districtList, setDistrictList] = useState<DistrictType[]>([])
@@ -109,14 +109,14 @@ const ShippingInfomation = () => {
         p.id === selected.id ? p : null
       )
 
-      const data = {
+      const newProvinceInformation = {
         ...addressInfo,
         provinceId: selected.id,
         provinceName: province[0].name_th
       }
 
-      setAddressInfo(data)
-      setShippingInformation(data)
+      setAddressInfo(newProvinceInformation)
+      setShippingInformation(newProvinceInformation)
 
       getDistrictList(selected.id)
     } else if (selected.field === 'district') {
@@ -124,15 +124,15 @@ const ShippingInfomation = () => {
         d.id === selected.id ? d : null
       )
 
-      const data = {
+      const newDistrictInformation = {
         ...addressInfo,
         districtId: selected.id,
         districtName: district[0].name_th,
         zipCode: 0
       }
 
-      setAddressInfo(data)
-      setShippingInformation(data)
+      setAddressInfo(newDistrictInformation)
+      setShippingInformation(newDistrictInformation)
 
       getSubDistrictList(selected.id)
     } else if (selected.field === 'subDistrict') {
@@ -140,15 +140,15 @@ const ShippingInfomation = () => {
         d.id === selected.id ? d : null
       )
 
-      const data = {
+      const newSubDistrictInformation = {
         ...addressInfo,
         subDistrictId: selected.id,
         subDistrictName: subDistrict[0].name_th,
         zipCode: subDistrict[0].zip_code
       }
 
-      setAddressInfo(data)
-      setShippingInformation(data)
+      setAddressInfo(newSubDistrictInformation)
+      setShippingInformation(newSubDistrictInformation)
     }
   }
 

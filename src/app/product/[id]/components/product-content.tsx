@@ -1,6 +1,6 @@
 'use client'
 
-import useCartStore from '@/app/cart/hooks/use-cart-store'
+import useOrderStore from '@/hooks/use-order-store'
 import Button from '@/components/button/button'
 import InputQuantity from '@/components/input-quantity'
 import Header1 from '@/components/typography/header1'
@@ -14,7 +14,7 @@ import { useState } from 'react'
 
 const ProductContent = (product: GetProductDetailServiceResponse) => {
   const [quantity, setQuantity] = useState(1)
-  const { getProductListInCart } = useCartStore()
+  const { getProductListInCart } = useOrderStore()
 
   const handleQuantityChange = (e: { target: { value: string } }) =>
     setQuantity(Number(e.target.value))
