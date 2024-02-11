@@ -66,7 +66,7 @@ const CheckoutView = () => {
     const result = await orderCheckoutService(order)
 
     if (result) {
-      window.location.href = '/orders/completed'
+      window.location.href = '/payment?order-id=' + result.order_id
     } else {
       alert ('Error Checkout, Please Try Again')
     }

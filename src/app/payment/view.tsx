@@ -1,29 +1,55 @@
 'use client'
 
 import FormOtp from '@/app/payment/components/form-otp'
+import PaymentLogo from '@/app/payment/components/logo'
 import PaymentText from '@/app/payment/components/payment-text'
 import Button from '@/components/button/button'
-import Image from '@/components/image'
-import Header1 from '@/components/typography/header1'
 import Text from '@/components/typography/text'
-import config from '@/config'
+import orderUpdateStatusService from '@/services/order-update-status'
+import { isNumber } from '@/utils/format'
 import dayjs from 'dayjs'
+import { useSearchParams } from 'next/navigation'
+import { useState } from 'react'
 
 // ----------------------------------------------------------------------
 
 const PaymentView = () => {
+  const searchParams = useSearchParams()
+  const orderId = searchParams.get('order-id')
+
   const today = dayjs().format('DD/MM/YYYY')
+
+  const [otpRef, setOtpRef] = useState('AXYZ')
+  const [otp, setOtp] = useState('')
+
+  const handleOtpChange = (e: { target: { value: string } }) => {
+    if (isNumber(e.target.value)) {
+      setOtp(e.target.value)
+    }
+  }
+
+  const handlePaymentConfirm = async () => {
+    if (otp.length === 6) {
+      const result = await orderUpdateStatusService({
+        orderId: Number(orderId),
+        otp: Number(otp),
+        otpRef: otpRef
+      })
+
+      if (result) {
+        window.location.href = '/orders/completed'
+      }
+    }
+  }
+
+  const handleCancle = () => {
+    window.location.href = '/checkout'
+  }
 
   return (
     <div className="bg-white">
       <div className="min-h-[100vh] flex flex-col items-center mx-auto max-w-2xl px-4 py-[105px]">
-        <Image
-          src={config.logo.sckPaymentGateway}
-          width={100}
-          height={100}
-          alt="SCK Payment Gateway"
-        />
-        <Header1 className="text-green-600 mt-2">SCK Payment Gateway</Header1>
+        <PaymentLogo />
         <Text size="md" className="text-black mt-5">
           Please check the accuracy of your identity verification message. To
           increase security in making this payment transaction.
@@ -39,13 +65,13 @@ const PaymentView = () => {
           />
         </div>
 
-        <FormOtp />
+        <FormOtp otpRef={otpRef} otp={otp} onChange={handleOtpChange} />
 
         <div className="flex gap-2 mt-12">
-          <Button size="sm" color="primary">
+          <Button size="sm" color="primary" onClick={handlePaymentConfirm}>
             PAY NOW
           </Button>
-          <Button size="sm" color="default">
+          <Button size="sm" color="default" onClick={handleCancle}>
             Cancle
           </Button>
         </div>

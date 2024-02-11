@@ -3,30 +3,27 @@
 import Button from '@/components/button/button'
 import InputField from '@/components/input-field'
 import { isNumber } from '@/utils/format'
-import { useState } from 'react'
 
 // ----------------------------------------------------------------------
 
-const FormOtp = () => {
-  const [otp, setOtp] = useState(0)
+type FormOtpProps = {
+  otpRef: string
+  otp: string
+  onChange: (e: { target: { value: string } }) => void
+}
 
-  const handleOtpChange = (e: { target: { value: string } }) => {
-    if (isNumber(e.target.value)) {
-      setOtp(Number(e.target.value))
-    }
-  }
-
+const FormOtp = ({ otpRef, otp, onChange }: FormOtpProps) => {
   return (
     <div className="-mx-2 flex items-end justify-between">
       <div className="flex-grow px-2 lg:max-w-sm">
         <InputField
           id="otp"
           type="text"
-          label="OTP (Ref: YYXX)"
+          label={`OTP (Ref: ${otpRef})`}
           placeholder="XXXXXX"
           maxLength={6}
-          onChange={handleOtpChange}
-          value={otp > 0 ? otp : ''}
+          onChange={onChange}
+          value={otp !== '' ? otp : ''}
           required
         />
       </div>
