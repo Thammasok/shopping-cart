@@ -37,7 +37,14 @@ const PaymentView = () => {
       })
 
       if (result) {
-        window.location.href = '/orders/completed'
+        const convertResultToObject = {
+          ...result,
+          order_id: result.order_id.toString(),
+          shipping_method_id: result.shipping_method_id.toString()
+        }
+
+        const query = new URLSearchParams(convertResultToObject).toString()
+        window.location.href = `/orders/completed?${query}`
       }
     }
   }

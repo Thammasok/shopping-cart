@@ -1,5 +1,7 @@
 import config from '@/config'
 
+// ----------------------------------------------------------------------------
+
 export const subTotal = (priceList: number[]) => {
   let total = 0
 
