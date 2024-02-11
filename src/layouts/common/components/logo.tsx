@@ -1,6 +1,7 @@
 'use client'
 
 import Image from '@/components/image'
+import config from '@/config'
 
 // ---------------------------------------------------
 
@@ -11,7 +12,7 @@ const Logo = () => {
         <span className="sr-only">SCK Shopping Mall</span>
         <Image
           className="h-10 w-auto"
-          src="/logo2.png"
+          src={config.logo.shoppingMall}
           alt="SCK Shopping Mall"
           width={40}
           height={40}

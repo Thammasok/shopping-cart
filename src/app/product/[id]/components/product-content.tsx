@@ -1,13 +1,13 @@
 'use client'
 
-import useOrderStore from '@/hooks/use-order-store'
 import Button from '@/components/button/button'
 import InputQuantity from '@/components/input-quantity'
 import Header1 from '@/components/typography/header1'
 import Text from '@/components/typography/text'
+import useOrderStore from '@/hooks/use-order-store'
 import addToCartService from '@/services/cart/add-to-cart'
 import { GetProductDetailServiceResponse } from '@/services/product-detail'
-import { converNumber, convertCurrency } from '@/utils/format'
+import { converNumber, convertCurrency, isNumber } from '@/utils/format'
 import { useState } from 'react'
 
 // ----------------------------------------------------------------------
@@ -16,8 +16,11 @@ const ProductContent = (product: GetProductDetailServiceResponse) => {
   const [quantity, setQuantity] = useState(1)
   const { getProductListInCart } = useOrderStore()
 
-  const handleQuantityChange = (e: { target: { value: string } }) =>
-    setQuantity(Number(e.target.value))
+  const handleQuantityChange = (e: { target: { value: string } }) => {
+    if (isNumber(e.target.value)) {
+      setQuantity(Number(e.target.value))
+    }
+  }
 
   const handleQuantityOnBlur = (e: { target: { value: string } }) => {
     const value = Number(e.target.value)
